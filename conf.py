@@ -187,7 +187,23 @@ epub_exclude_files = ['search.html']
 # -- Options for intersphinx extension ---------------------------------------
 
 # Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {'https://docs.python.org/': None}
+# intersphinx_mapping = {'https://docs.python.org/': None}
+
+default_role = 'py:obj'
+
+# Configuration for intersphinx: refer to the Python standard library.
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/3/',
+               (None, 'http://data.astropy.org/intersphinx/python3.inv')),
+    'numpy': ('https://docs.scipy.org/doc/numpy/',
+              (None, 'http://data.astropy.org/intersphinx/numpy.inv')),
+    'scipy': ('https://docs.scipy.org/doc/scipy/reference/',
+              (None, 'http://data.astropy.org/intersphinx/scipy.inv')),
+    'matplotlib': ('https://matplotlib.org/',
+                   (None, 'http://data.astropy.org/intersphinx/matplotlib.inv')),
+    'astropy': ('http://docs.astropy.org/en/stable/', None),
+    'sunpy': ('http://docs.sunpy.org/en/stable/', None)
+}
 
 
 extensions += ["sphinx_gallery.gen_gallery"]
@@ -206,5 +222,6 @@ sphinx_gallery_conf = {
     #     'numpy': 'http://docs.scipy.org/doc/numpy',
     # },
     'abort_on_example_error': False,
-    'plot_gallery': True
+    'plot_gallery': True,
+    # 'line_numbers': True
 }
