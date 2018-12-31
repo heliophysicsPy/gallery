@@ -10,6 +10,26 @@ A collection of examples and tutorials for using Python for Heliophysics.
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="The purpose of this demo is to demonstrate the capabilities of astropy `~astropy.units.Unit`, `...">
+
+.. only:: html
+
+    .. figure:: /generated/gallery/images/thumb/sphx_glr_units_demo_thumb.png
+
+        :ref:`sphx_glr_generated_gallery_units_demo.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /generated/gallery/units_demo
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="Written by Steven Christe and presented at the Heliopython meeting on November 13-15, 2018. The...">
 
 .. only:: html

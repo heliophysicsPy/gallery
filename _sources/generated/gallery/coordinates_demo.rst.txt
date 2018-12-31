@@ -198,7 +198,7 @@ We can now get the position of the Crab in the sky as observed from DKIST
 
     <SkyCoord (AltAz: obstime=2018-11-14 10:00:00.000, location=(-5466027.73432422, -2404324.10015092, 2242293.2433644) m, pressure=0.0 hPa, temperature=0.0 deg_C, relative_humidity=0.0, obswl=1.0 micron): (az, alt) in deg
         (80.97673528, 55.86134336)>
-    Crab's Altitude = 55.86134335821158 deg
+    Crab's Altitude = 55.86134335789039 deg
 
 
 Let's now move on to showing how SunPy extends AstroPy coordinates by
@@ -250,7 +250,7 @@ The position in the sky from the DKIST site is
 
  .. code-block:: none
 
-    Altitude is -86.69112094895597 deg and Azimuth is 317.37150657198464 deg
+    Altitude is -86.69112094873573 deg and Azimuth is 317.3715065677231 deg
 
 
 As expected the Sun is below the horizon! Let's consider noon now.
@@ -273,7 +273,7 @@ As expected the Sun is below the horizon! Let's consider noon now.
 
  .. code-block:: none
 
-    Altitude is 50.83409609303014 deg and Azimuth is 176.42374110884572 deg
+    Altitude is 50.83409609313162 deg and Azimuth is 176.42374111145406 deg
 
 
 Next let’s check this calculation by converting it back to helioprojective.
@@ -300,7 +300,7 @@ to the Sun. solar distance. Define distance with SunPy’s almanac.
 
  .. code-block:: none
 
-    The helioprojective point is -0.008005327549653884 arcsec, 0.9685168694980386 arcsec
+    The helioprojective point is -0.008005327549653884 arcsec, 0.9685168694878177 arcsec
 
 
 Let's now show off how we can convert between Solar coordinates Coordinates.
@@ -345,7 +345,7 @@ Transform to HeliographicCarrington
 
 
 
-**Total running time of the script:** ( 0 minutes  13.716 seconds)
+**Total running time of the script:** ( 0 minutes  6.609 seconds)
 
 
 .. _sphx_glr_download_generated_gallery_coordinates_demo.py:

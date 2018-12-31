@@ -16,7 +16,7 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="HelioPython Gallery" href="index.html" />
+    <link rel="prev" title="Quantities, Units, and Constants" href="units_demo.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
   
@@ -113,7 +113,7 @@ from the library, let’s add it as a position</p>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;SkyCoord (AltAz: obstime=2018-11-14 10:00:00.000, location=(-5466027.73432422, -2404324.10015092, 2242293.2433644) m, pressure=0.0 hPa, temperature=0.0 deg_C, relative_humidity=0.0, obswl=1.0 micron): (az, alt) in deg
     (80.97673528, 55.86134336)&gt;
-Crab&#39;s Altitude = 55.86134335821158 deg
+Crab&#39;s Altitude = 55.86134335789039 deg
 </pre></div>
 </div>
 <p>Let’s now move on to showing how SunPy extends AstroPy coordinates by
@@ -132,7 +132,7 @@ and Helioprojective. Let’s define the center of the Sun</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Altitude is -86.69112094895597 deg and Azimuth is 317.37150657198464 deg
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Altitude is -86.69112094873573 deg and Azimuth is 317.3715065677231 deg
 </pre></div>
 </div>
 <p>As expected the Sun is below the horizon! Let’s consider noon now.</p>
@@ -142,7 +142,7 @@ and Helioprojective. Let’s define the center of the Sun</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Altitude is 50.83409609303014 deg and Azimuth is 176.42374110884572 deg
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Altitude is 50.83409609313162 deg and Azimuth is 176.42374111145406 deg
 </pre></div>
 </div>
 <p>Next let’s check this calculation by converting it back to helioprojective.
@@ -156,7 +156,7 @@ to the Sun. solar distance. Define distance with SunPy’s almanac.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The helioprojective point is -0.008005327549653884 arcsec, 0.9685168694980386 arcsec
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The helioprojective point is -0.008005327549653884 arcsec, 0.9685168694878177 arcsec
 </pre></div>
 </div>
 <p>Let’s now show off how we can convert between Solar coordinates Coordinates.
@@ -172,7 +172,7 @@ Transform to HeliographicStonyhurst</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sun</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">frames</span><span class="o">.</span><span class="n">HeliographicCarrington</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  13.716 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  6.609 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-gallery-coordinates-demo-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../../_downloads/72cf4ffb0b3355d68e71d82ba1ca3fea/coordinates_demo.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">coordinates_demo.py</span></code></a></div>
@@ -201,6 +201,7 @@ Transform to HeliographicStonyhurst</p>
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">HelioPython Gallery</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="units_demo.html">Quantities, Units, and Constants</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Astropy Coordinates and SunPy Demo</a></li>
 </ul>
 </li>
@@ -211,7 +212,7 @@ Transform to HeliographicStonyhurst</p>
 <ul>
   <li><a href="../../index.html">Documentation overview</a><ul>
   <li><a href="index.html">HelioPython Gallery</a><ul>
-      <li>Previous: <a href="index.html" title="previous chapter">HelioPython Gallery</a></li>
+      <li>Previous: <a href="units_demo.html" title="previous chapter">Quantities, Units, and Constants</a></li>
   </ul></li>
   </ul></li>
 </ul>

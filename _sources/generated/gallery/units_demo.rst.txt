@@ -1,0 +1,333 @@
+.. note::
+    :class: sphx-glr-download-link-note
+
+    Click :ref:`here <sphx_glr_download_generated_gallery_units_demo.py>` to download the full example code
+.. rst-class:: sphx-glr-example-title
+
+.. _sphx_glr_generated_gallery_units_demo.py:
+
+
+================================
+Quantities, Units, and Constants
+================================
+
+The purpose of this demo is to demonstrate the capabilities of astropy
+`~astropy.units.Unit`, `~astropy.units.Quantity`, and `~astropy.units.Constant`.
+
+
+The astropy `~astropy.units.Quantity` object
+handles defining, converting between, and performing arithmetic
+with physical quantities, such as meters, seconds, Hz, etc.
+
+
+
+.. code-block:: python
+
+    from astropy import units as u
+    import numpy as np
+
+
+
+
+
+
+
+You can define a `~astropy.units.Quantity`
+(a number with a unit) in a number of different ways.
+
+
+
+.. code-block:: python
+
+    42.0 * u.meter
+    [1., 2., 3.] * u.s
+    np.arange(10) * u.Hz
+
+
+
+
+
+
+
+These objects work as you would expect with most Python operators or numpy
+functions
+
+
+
+.. code-block:: python
+
+    np.power(2 * u.s, 3)
+    (2 * u.s) ** 2
+
+
+
+
+
+
+
+If needed you can get the value as well as the unit
+
+
+
+.. code-block:: python
+
+    q = 42.0 * u.meter
+    print("The value is {0} and the unit is {1}".format(q.value, q.unit))
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    The value is 42.0 and the unit is m
+
+
+Using the `~astropy.units.Quantity.to` function we can easily converted to
+another unit.
+
+
+
+.. code-block:: python
+
+    print(q.to('parsec'))
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    1.3611273015772974e-15 pc
+
+
+and imperial units as also supported
+
+
+
+.. code-block:: python
+
+    from astropy.units import imperial
+    print(q.to(imperial.mile))
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    0.026097590073968023 mi
+
+
+Units that “cancel out” become a special unit called the “dimensionless unit”:
+
+
+
+.. code-block:: python
+
+    u.m / u.m
+
+
+
+
+
+
+
+More complex conversions are also supported using
+`~astropy.units.equivalencies`.
+For example, we can convert the GOES wavelength range to Hz or keV easily using
+the `~astropy.units.equivalencies.spectral`.
+
+
+
+.. code-block:: python
+
+    print(([0.5, 4.0] * u.angstrom).to('Hz', u.spectral()))
+
+    print(([0.5, 4.0] * u.angstrom).to('keV', u.spectral()))
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    [5.99584916e+18 7.49481145e+17] Hz
+    [24.79683948  3.09960493] keV
+
+
+Astropy provides a number of reference constants
+
+
+
+.. code-block:: python
+
+    from astropy import constants as astropy_const
+
+
+
+
+
+
+
+SunPy also provides a number of relevant solar reference constants.
+
+
+
+.. code-block:: python
+
+    from sunpy.sun import constants as sunpy_const
+
+
+
+
+
+
+
+`~astropy.units.Constant` are simply quantities but they also provide an uncertainty
+and a reference
+
+
+
+.. code-block:: python
+
+    M_earth = astropy_const.M_earth
+    print("The mass of the Earth is {0} +/- {1} {2} [ref {3}].".format(M_earth.value, M_earth.uncertainty, M_earth.unit, M_earth.reference))
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    The mass of the Earth is 5.972364730419773e+24 +/- 2.7740648395436216e+20 kg [ref IAU 2015 Resolution B 3 + CODATA 2014].
+
+
+The light travel time in minutes from the Sun to the Earth can be calculated
+
+
+
+.. code-block:: python
+
+    print((sunpy_const.au / astropy_const.c).to('min'))
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    8.316746397269274 min
+
+
+Let's define a function to calculate the plasma beta, with quantities we
+don't have to worry about much beyond getting the equation correct
+
+
+
+.. code-block:: python
+
+    def plasma_beta(n, T, B):
+        return (2 * n * astropy_const.k_B * T) / (B ** 2 / (2 * astropy_const.mu0))
+
+
+
+
+
+
+
+The plasma beta for the solar corona using appropriate parameters is given
+by the following. The decompose function works to simplify the units.
+
+
+
+.. code-block:: python
+
+    print(plasma_beta(1e9 * u.cm**-3, 3e6 * u.Kelvin, 10 * u.Gauss).decompose())
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    0.20819689188583768
+
+
+If the input is given in the wrong units then an error may occur but a better
+way is to inforce the units on input. Let's consider a simpler example here
+to calculate velocity. We use a function annotation to specify the units
+(this is a Python 3.5+ feature, see the `quantity_input <http://docs.astropy.org/en/stable/api/astropy.units.quantity_input.html#astropy.units.quantity_input>`_
+documentation for more details and Python 2 instructions):
+
+
+
+.. code-block:: python
+
+
+    @u.quantity_input
+    def speed(length: u.m, time: u.s):
+        return length / time
+
+
+
+
+
+
+**Total running time of the script:** ( 0 minutes  0.528 seconds)
+
+
+.. _sphx_glr_download_generated_gallery_units_demo.py:
+
+
+.. only :: html
+
+ .. container:: sphx-glr-footer
+    :class: sphx-glr-footer-example
+
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Python source code: units_demo.py <units_demo.py>`
+
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Jupyter notebook: units_demo.ipynb <units_demo.ipynb>`
+
+
+.. only:: html
+
+ .. rst-class:: sphx-glr-signature
+
+    `Gallery generated by Sphinx-Gallery <https://sphinx-gallery.readthedocs.io>`_
