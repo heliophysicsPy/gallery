@@ -302,7 +302,7 @@ documentation for more details and Python 2 instructions):
 
 
 
-**Total running time of the script:** ( 0 minutes  0.528 seconds)
+**Total running time of the script:** ( 0 minutes  0.568 seconds)
 
 
 .. _sphx_glr_download_generated_gallery_units_demo.py:
