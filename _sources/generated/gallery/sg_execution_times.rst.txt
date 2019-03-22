@@ -1,0 +1,11 @@
+
+:orphan:
+
+.. _sphx_glr_generated_gallery_sg_execution_times:
+
+Computation times
+=================
+**00:03.992** total execution time for **generated_gallery** files:
+
+- **00:03.470**: :ref:`sphx_glr_generated_gallery_coordinates_demo.py` (``coordinates_demo.py``)
+- **00:00.522**: :ref:`sphx_glr_generated_gallery_units_demo.py` (``units_demo.py``)

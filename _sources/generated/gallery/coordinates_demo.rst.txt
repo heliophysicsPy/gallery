@@ -14,15 +14,12 @@ Astropy Coordinates and SunPy Demo
 Written by Steven Christe and presented at the Heliopython meeting on
 November 13-15, 2018. The purpose of this demo is to show off the AstroPy coordinates
 framework as well as show how SunPy extends it to add solar coordinate systems. 
-
-
 The astropy coordinates package provides classes for representing a variety
 of celestial/spatial coordinates and their velocity components, as well as
 tools for converting between common coordinate systems in a uniform way.
 
 
-
-.. code-block:: python
+.. code-block:: default
 
     from astropy import units as u
     from astropy.coordinates import SkyCoord, AltAz
@@ -39,8 +36,7 @@ As an example of creating a SkyCoord to represent an ICRS (Right ascension
 [RA], Declination [Dec]) sky position:
 
 
-
-.. code-block:: python
+.. code-block:: default
 
     c = SkyCoord(ra=10.625*u.degree, dec=41.2*u.degree, frame='icrs')
 
@@ -52,8 +48,7 @@ As an example of creating a SkyCoord to represent an ICRS (Right ascension
 It can also handle arrays (many ways to instantiate a SkyCoord)
 
 
-
-.. code-block:: python
+.. code-block:: default
 
     c = SkyCoord(ra=[10, 11, 12, 13]*u.degree, dec=[41, -5, 42, 0]*u.degree)
 
@@ -66,8 +61,7 @@ It can also handle arrays (many ways to instantiate a SkyCoord)
 SkyCoord can also handle 3D positions, just add a distance
 
 
-
-.. code-block:: python
+.. code-block:: default
 
     c = SkyCoord(ra=10.68458*u.degree, dec=41.26917*u.degree, distance=770*u.kpc)
 
@@ -80,8 +74,7 @@ SkyCoord can also handle 3D positions, just add a distance
 So now cartesian coordinates are available
 
 
-
-.. code-block:: python
+.. code-block:: default
 
     print('r = ({0}, {1}, {2})'.format(c.cartesian.x, c.cartesian.y, c.cartesian.z))
 
@@ -102,8 +95,7 @@ Positions of objects
 Can also register positions of objects or do object lookups
 
 
-
-.. code-block:: python
+.. code-block:: default
 
     crab = SkyCoord.from_name("Crab")
     print(crab)
@@ -126,8 +118,7 @@ let's consider now consider a position in the sky from a specific location
 on the Earth.
 
 
-
-.. code-block:: python
+.. code-block:: default
 
     from astropy.coordinates import EarthLocation
 
@@ -140,8 +131,7 @@ on the Earth.
 Many positions are already availabe such as that of the VLA.
 
 
-
-.. code-block:: python
+.. code-block:: default
 
     vla_coord = EarthLocation.of_site('vla')
     print(vla_coord)
@@ -163,8 +153,7 @@ Using a position on the Earth we can calculate Alt/Az, since dkist is missing
 from the library, let's add it as a position
 
 
-
-.. code-block:: python
+.. code-block:: default
 
     dkist = EarthLocation(lat=20.70818*u.deg, lon=-156.2569*u.deg, height=3084*u.m)
     utcoffset = -10 * u.hour
@@ -179,8 +168,7 @@ from the library, let's add it as a position
 We can now get the position of the Crab in the sky as observed from DKIST
 
 
-
-.. code-block:: python
+.. code-block:: default
 
     crab_altaz = crab.transform_to(AltAz(obstime=midnight,location=dkist))
     print(crab_altaz)
@@ -197,16 +185,15 @@ We can now get the position of the Crab in the sky as observed from DKIST
  .. code-block:: none
 
     <SkyCoord (AltAz: obstime=2018-11-14 10:00:00.000, location=(-5466027.73432422, -2404324.10015092, 2242293.2433644) m, pressure=0.0 hPa, temperature=0.0 deg_C, relative_humidity=0.0, obswl=1.0 micron): (az, alt) in deg
-        (80.97673528, 55.86134336)>
-    Crab's Altitude = 55.86134335789039 deg
+        (80.97673527, 55.8613432)>
+    Crab's Altitude = 55.86134320242592 deg
 
 
 Let's now move on to showing how SunPy extends AstroPy coordinates by
 adding solar coordinate systems.
 
 
-
-.. code-block:: python
+.. code-block:: default
 
     from sunpy.coordinates import frames, get_sunearth_distance
 
@@ -220,8 +207,7 @@ SunPy defines HeliographicStonyhurst, HeliographicCarrington, Heliocentric,
 and Helioprojective. Let's define the center of the Sun
 
 
-
-.. code-block:: python
+.. code-block:: default
 
     sun = SkyCoord(0 * u.arcsec, 0 * u.arcsec, obstime=midnight, frame=frames.Helioprojective)
 
@@ -234,8 +220,7 @@ and Helioprojective. Let's define the center of the Sun
 The position in the sky from the DKIST site is
 
 
-
-.. code-block:: python
+.. code-block:: default
 
     sun_altaz = sun.transform_to(AltAz(obstime=midnight,location=dkist))
     print('Altitude is {0} and Azimuth is {1}'.format(sun_altaz.T.alt, sun_altaz.T.az))
@@ -250,14 +235,13 @@ The position in the sky from the DKIST site is
 
  .. code-block:: none
 
-    Altitude is -86.69112094873573 deg and Azimuth is 317.3715065677231 deg
+    Altitude is -86.6911208369448 deg and Azimuth is 317.37150456889816 deg
 
 
 As expected the Sun is below the horizon! Let's consider noon now.
 
 
-
-.. code-block:: python
+.. code-block:: default
 
     noon = Time('2018-11-14 12:00:00') - utcoffset
     sun_altaz = sun.transform_to(AltAz(obstime=noon,location=dkist))
@@ -273,7 +257,7 @@ As expected the Sun is below the horizon! Let's consider noon now.
 
  .. code-block:: none
 
-    Altitude is 50.83409609313162 deg and Azimuth is 176.42374111145406 deg
+    Altitude is 50.83409609130078 deg and Azimuth is 176.42374089800512 deg
 
 
 Next let’s check this calculation by converting it back to helioprojective.
@@ -282,8 +266,7 @@ To go from Altitude/Azimuth to Helioprojective, you will need the distance
 to the Sun. solar distance. Define distance with SunPy’s almanac.
 
 
-
-.. code-block:: python
+.. code-block:: default
 
     distance = get_sunearth_distance(noon)
     b = SkyCoord(az=sun_altaz.T.az, alt=sun_altaz.T.alt, distance=distance, frame=AltAz(obstime=noon,location=dkist))
@@ -300,15 +283,14 @@ to the Sun. solar distance. Define distance with SunPy’s almanac.
 
  .. code-block:: none
 
-    The helioprojective point is -0.008005327549653884 arcsec, 0.9685168694878177 arcsec
+    The helioprojective point is -0.008005327549653884 arcsec, 0.9685168694942247 arcsec
 
 
 Let's now show off how we can convert between Solar coordinates Coordinates.
 Transform to HeliographicStonyhurst
 
 
-
-.. code-block:: python
+.. code-block:: default
 
     sun.transform_to(frames.HeliographicStonyhurst)
 
@@ -321,8 +303,7 @@ Transform to HeliographicStonyhurst
 Transform to Heliocentric
 
 
-
-.. code-block:: python
+.. code-block:: default
 
     sun.transform_to(frames.Heliocentric)
 
@@ -335,8 +316,7 @@ Transform to Heliocentric
 Transform to HeliographicCarrington
 
 
-
-.. code-block:: python
+.. code-block:: default
 
     sun.transform_to(frames.HeliographicCarrington)
 
@@ -345,7 +325,10 @@ Transform to HeliographicCarrington
 
 
 
-**Total running time of the script:** ( 0 minutes  3.896 seconds)
+
+.. rst-class:: sphx-glr-timing
+
+   **Total running time of the script:** ( 0 minutes  3.470 seconds)
 
 
 .. _sphx_glr_download_generated_gallery_coordinates_demo.py:

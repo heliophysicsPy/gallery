@@ -14,6 +14,7 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Astropy Coordinates and SunPy Demo" href="coordinates_demo.html" />
@@ -41,39 +42,39 @@
 <div class="sphx-glr-example-title section" id="quantities-units-and-constants">
 <span id="sphx-glr-generated-gallery-units-demo-py"></span><h1>Quantities, Units, and Constants<a class="headerlink" href="#quantities-units-and-constants" title="Permalink to this headline">¶</a></h1>
 <p>The purpose of this demo is to demonstrate the capabilities of astropy
-<a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.Unit.html#astropy.units.Unit" title="(in Astropy v3.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Unit</span></code></a>, <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.Quantity.html#astropy.units.Quantity" title="(in Astropy v3.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Quantity</span></code></a>, and <code class="xref py py-obj docutils literal notranslate"><span class="pre">Constant</span></code>.</p>
-<p>The astropy <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.Quantity.html#astropy.units.Quantity" title="(in Astropy v3.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Quantity</span></code></a> object
+<a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.Unit.html#astropy.units.Unit" title="(in Astropy v3.1.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Unit</span></code></a>, <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.Quantity.html#astropy.units.Quantity" title="(in Astropy v3.1.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Quantity</span></code></a>, and <code class="xref py py-obj docutils literal notranslate"><span class="pre">Constant</span></code>.
+The astropy <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.Quantity.html#astropy.units.Quantity" title="(in Astropy v3.1.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Quantity</span></code></a> object
 handles defining, converting between, and performing arithmetic
 with physical quantities, such as meters, seconds, Hz, etc.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy</span> <span class="k">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
-<p>You can define a <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.Quantity.html#astropy.units.Quantity" title="(in Astropy v3.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Quantity</span></code></a>
+<p>You can define a <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.Quantity.html#astropy.units.Quantity" title="(in Astropy v3.1.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Quantity</span></code></a>
 (a number with a unit) in a number of different ways.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mf">42.0</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">meter</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">42.0</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">meter</span>
 <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">s</span>
 <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">Hz</span>
 </pre></div>
 </div>
 <p>These objects work as you would expect with most Python operators or numpy
 functions</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
 </pre></div>
 </div>
 <p>If needed you can get the value as well as the unit</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="mf">42.0</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">meter</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;The value is {0} and the unit is {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">q</span><span class="o">.</span><span class="n">unit</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="mf">42.0</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">meter</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The value is </span><span class="si">{0}</span><span class="s2"> and the unit is </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">q</span><span class="o">.</span><span class="n">unit</span><span class="p">))</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The value is 42.0 and the unit is m
 </pre></div>
 </div>
-<p>Using the <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.Quantity.html#astropy.units.Quantity.to" title="(in Astropy v3.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to</span></code></a> function we can easily converted to
+<p>Using the <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.Quantity.html#astropy.units.Quantity.to" title="(in Astropy v3.1.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to</span></code></a> function we can easily converted to
 another unit.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;parsec&#39;</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;parsec&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -81,8 +82,8 @@ another unit.</p>
 </pre></div>
 </div>
 <p>and imperial units as also supported</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy.units</span> <span class="kn">import</span> <span class="n">imperial</span>
-<span class="k">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">imperial</span><span class="o">.</span><span class="n">mile</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy.units</span> <span class="k">import</span> <span class="n">imperial</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">imperial</span><span class="o">.</span><span class="n">mile</span><span class="p">))</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -90,16 +91,16 @@ another unit.</p>
 </pre></div>
 </div>
 <p>Units that “cancel out” become a special unit called the “dimensionless unit”:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="o">.</span><span class="n">m</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="o">.</span><span class="n">m</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span>
 </pre></div>
 </div>
 <p>More complex conversions are also supported using
-<a class="reference external" href="http://docs.astropy.org/en/stable/units/index.html#module-astropy.units.equivalencies" title="(in Astropy v3.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">equivalencies</span></code></a>.
+<a class="reference external" href="http://docs.astropy.org/en/stable/units/index.html#module-astropy.units.equivalencies" title="(in Astropy v3.1.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">equivalencies</span></code></a>.
 For example, we can convert the GOES wavelength range to Hz or keV easily using
-the <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.equivalencies.spectral.html#astropy.units.equivalencies.spectral" title="(in Astropy v3.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spectral</span></code></a>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;Hz&#39;</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">spectral</span><span class="p">()))</span>
+the <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.equivalencies.spectral.html#astropy.units.equivalencies.spectral" title="(in Astropy v3.1.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spectral</span></code></a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;Hz&#39;</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">spectral</span><span class="p">()))</span>
 
-<span class="k">print</span><span class="p">(([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;keV&#39;</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">spectral</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;keV&#39;</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">spectral</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -108,17 +109,17 @@ the <a class="reference external" href="http://docs.astropy.org/en/stable/api/as
 </pre></div>
 </div>
 <p>Astropy provides a number of reference constants</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">constants</span> <span class="k">as</span> <span class="n">astropy_const</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy</span> <span class="k">import</span> <span class="n">constants</span> <span class="k">as</span> <span class="n">astropy_const</span>
 </pre></div>
 </div>
 <p>SunPy also provides a number of relevant solar reference constants.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sunpy.sun</span> <span class="kn">import</span> <span class="n">constants</span> <span class="k">as</span> <span class="n">sunpy_const</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sunpy.sun</span> <span class="k">import</span> <span class="n">constants</span> <span class="k">as</span> <span class="n">sunpy_const</span>
 </pre></div>
 </div>
 <p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Constant</span></code> are simply quantities but they also provide an uncertainty
 and a reference</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">M_earth</span> <span class="o">=</span> <span class="n">astropy_const</span><span class="o">.</span><span class="n">M_earth</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;The mass of the Earth is {0} +/- {1} {2} [ref {3}].&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">M_earth</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">M_earth</span><span class="o">.</span><span class="n">uncertainty</span><span class="p">,</span> <span class="n">M_earth</span><span class="o">.</span><span class="n">unit</span><span class="p">,</span> <span class="n">M_earth</span><span class="o">.</span><span class="n">reference</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">M_earth</span> <span class="o">=</span> <span class="n">astropy_const</span><span class="o">.</span><span class="n">M_earth</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The mass of the Earth is </span><span class="si">{0}</span><span class="s2"> +/- </span><span class="si">{1}</span><span class="s2"> </span><span class="si">{2}</span><span class="s2"> [ref </span><span class="si">{3}</span><span class="s2">].&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">M_earth</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">M_earth</span><span class="o">.</span><span class="n">uncertainty</span><span class="p">,</span> <span class="n">M_earth</span><span class="o">.</span><span class="n">unit</span><span class="p">,</span> <span class="n">M_earth</span><span class="o">.</span><span class="n">reference</span><span class="p">))</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -126,7 +127,7 @@ and a reference</p>
 </pre></div>
 </div>
 <p>The light travel time in minutes from the Sun to the Earth can be calculated</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">((</span><span class="n">sunpy_const</span><span class="o">.</span><span class="n">au</span> <span class="o">/</span> <span class="n">astropy_const</span><span class="o">.</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;min&#39;</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">((</span><span class="n">sunpy_const</span><span class="o">.</span><span class="n">au</span> <span class="o">/</span> <span class="n">astropy_const</span><span class="o">.</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;min&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -135,13 +136,13 @@ and a reference</p>
 </div>
 <p>Let’s define a function to calculate the plasma beta, with quantities we
 don’t have to worry about much beyond getting the equation correct</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plasma_beta</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plasma_beta</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">astropy_const</span><span class="o">.</span><span class="n">k_B</span> <span class="o">*</span> <span class="n">T</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">B</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">astropy_const</span><span class="o">.</span><span class="n">mu0</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>The plasma beta for the solar corona using appropriate parameters is given
 by the following. The decompose function works to simplify the units.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">plasma_beta</span><span class="p">(</span><span class="mf">1e9</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span><span class="o">**-</span><span class="mi">3</span><span class="p">,</span> <span class="mf">3e6</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">Kelvin</span><span class="p">,</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">Gauss</span><span class="p">)</span><span class="o">.</span><span class="n">decompose</span><span class="p">())</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">plasma_beta</span><span class="p">(</span><span class="mf">1e9</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span><span class="o">**-</span><span class="mi">3</span><span class="p">,</span> <span class="mf">3e6</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">Kelvin</span><span class="p">,</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">Gauss</span><span class="p">)</span><span class="o">.</span><span class="n">decompose</span><span class="p">())</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -153,12 +154,12 @@ way is to inforce the units on input. Let’s consider a simpler example here
 to calculate velocity. We use a function annotation to specify the units
 (this is a Python 3.5+ feature, see the <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.quantity_input.html#astropy.units.quantity_input">quantity_input</a>
 documentation for more details and Python 2 instructions):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@u.quantity_input</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@u</span><span class="o">.</span><span class="n">quantity_input</span>
 <span class="k">def</span> <span class="nf">speed</span><span class="p">(</span><span class="n">length</span><span class="p">:</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">length</span> <span class="o">/</span> <span class="n">time</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.568 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.522 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-gallery-units-demo-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../../_downloads/f935087ad77cd7f397e0884038a318f6/units_demo.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">units_demo.py</span></code></a></div>
@@ -232,7 +233,7 @@ documentation for more details and Python 2 instructions):</p>
       &copy;2018, HelioPython.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

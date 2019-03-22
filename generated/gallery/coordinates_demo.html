@@ -14,6 +14,7 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="prev" title="Quantities, Units, and Constants" href="units_demo.html" />
@@ -41,31 +42,31 @@
 <span id="sphx-glr-generated-gallery-coordinates-demo-py"></span><h1>Astropy Coordinates and SunPy Demo<a class="headerlink" href="#astropy-coordinates-and-sunpy-demo" title="Permalink to this headline">¶</a></h1>
 <p>Written by Steven Christe and presented at the Heliopython meeting on
 November 13-15, 2018. The purpose of this demo is to show off the AstroPy coordinates
-framework as well as show how SunPy extends it to add solar coordinate systems.</p>
-<p>The astropy coordinates package provides classes for representing a variety
+framework as well as show how SunPy extends it to add solar coordinate systems.
+The astropy coordinates package provides classes for representing a variety
 of celestial/spatial coordinates and their velocity components, as well as
 tools for converting between common coordinate systems in a uniform way.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
-<span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="kn">import</span> <span class="n">SkyCoord</span><span class="p">,</span> <span class="n">AltAz</span>
-<span class="kn">from</span> <span class="nn">astropy.time</span> <span class="kn">import</span> <span class="n">Time</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy</span> <span class="k">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+<span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="k">import</span> <span class="n">SkyCoord</span><span class="p">,</span> <span class="n">AltAz</span>
+<span class="kn">from</span> <span class="nn">astropy.time</span> <span class="k">import</span> <span class="n">Time</span>
 </pre></div>
 </div>
 <p>SkyCoord
 As an example of creating a SkyCoord to represent an ICRS (Right ascension
 [RA], Declination [Dec]) sky position:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">ra</span><span class="o">=</span><span class="mf">10.625</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span> <span class="n">dec</span><span class="o">=</span><span class="mf">41.2</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s1">&#39;icrs&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">ra</span><span class="o">=</span><span class="mf">10.625</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span> <span class="n">dec</span><span class="o">=</span><span class="mf">41.2</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s1">&#39;icrs&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>It can also handle arrays (many ways to instantiate a SkyCoord)</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">ra</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span> <span class="n">dec</span><span class="o">=</span><span class="p">[</span><span class="mi">41</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">degree</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">ra</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span> <span class="n">dec</span><span class="o">=</span><span class="p">[</span><span class="mi">41</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">degree</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>SkyCoord can also handle 3D positions, just add a distance</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">ra</span><span class="o">=</span><span class="mf">10.68458</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span> <span class="n">dec</span><span class="o">=</span><span class="mf">41.26917</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mi">770</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">kpc</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">ra</span><span class="o">=</span><span class="mf">10.68458</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span> <span class="n">dec</span><span class="o">=</span><span class="mf">41.26917</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mi">770</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">kpc</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>So now cartesian coordinates are available</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;r = ({0}, {1}, {2})&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">cartesian</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">cartesian</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">cartesian</span><span class="o">.</span><span class="n">z</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;r = (</span><span class="si">{0}</span><span class="s1">, </span><span class="si">{1}</span><span class="s1">, </span><span class="si">{2}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">cartesian</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">cartesian</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">cartesian</span><span class="o">.</span><span class="n">z</span><span class="p">))</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -74,8 +75,8 @@ As an example of creating a SkyCoord to represent an ICRS (Right ascension
 </div>
 <p>Positions of objects
 Can also register positions of objects or do object lookups</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">crab</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="s2">&quot;Crab&quot;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">crab</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crab</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="s2">&quot;Crab&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">crab</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -85,12 +86,12 @@ Can also register positions of objects or do object lookups</p>
 </div>
 <p>let’s consider now consider a position in the sky from a specific location
 on the Earth.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="kn">import</span> <span class="n">EarthLocation</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="k">import</span> <span class="n">EarthLocation</span>
 </pre></div>
 </div>
 <p>Many positions are already availabe such as that of the VLA.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vla_coord</span> <span class="o">=</span> <span class="n">EarthLocation</span><span class="o">.</span><span class="n">of_site</span><span class="p">(</span><span class="s1">&#39;vla&#39;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">vla_coord</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vla_coord</span> <span class="o">=</span> <span class="n">EarthLocation</span><span class="o">.</span><span class="n">of_site</span><span class="p">(</span><span class="s1">&#39;vla&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vla_coord</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -99,80 +100,80 @@ on the Earth.</p>
 </div>
 <p>Using a position on the Earth we can calculate Alt/Az, since dkist is missing
 from the library, let’s add it as a position</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dkist</span> <span class="o">=</span> <span class="n">EarthLocation</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="mf">20.70818</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">lon</span><span class="o">=-</span><span class="mf">156.2569</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">3084</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dkist</span> <span class="o">=</span> <span class="n">EarthLocation</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="mf">20.70818</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">lon</span><span class="o">=-</span><span class="mf">156.2569</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">3084</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span>
 <span class="n">utcoffset</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">hour</span>
 <span class="n">midnight</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="s1">&#39;2018-11-14 00:00:00&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="n">utcoffset</span>
 </pre></div>
 </div>
 <p>We can now get the position of the Crab in the sky as observed from DKIST</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">crab_altaz</span> <span class="o">=</span> <span class="n">crab</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">AltAz</span><span class="p">(</span><span class="n">obstime</span><span class="o">=</span><span class="n">midnight</span><span class="p">,</span><span class="n">location</span><span class="o">=</span><span class="n">dkist</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">crab_altaz</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Crab&#39;s Altitude = {0.alt:}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">crab_altaz</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crab_altaz</span> <span class="o">=</span> <span class="n">crab</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">AltAz</span><span class="p">(</span><span class="n">obstime</span><span class="o">=</span><span class="n">midnight</span><span class="p">,</span><span class="n">location</span><span class="o">=</span><span class="n">dkist</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">crab_altaz</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Crab&#39;s Altitude = </span><span class="si">{0.alt:}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">crab_altaz</span><span class="p">))</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;SkyCoord (AltAz: obstime=2018-11-14 10:00:00.000, location=(-5466027.73432422, -2404324.10015092, 2242293.2433644) m, pressure=0.0 hPa, temperature=0.0 deg_C, relative_humidity=0.0, obswl=1.0 micron): (az, alt) in deg
-    (80.97673528, 55.86134336)&gt;
-Crab&#39;s Altitude = 55.86134335789039 deg
+    (80.97673527, 55.8613432)&gt;
+Crab&#39;s Altitude = 55.86134320242592 deg
 </pre></div>
 </div>
 <p>Let’s now move on to showing how SunPy extends AstroPy coordinates by
 adding solar coordinate systems.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sunpy.coordinates</span> <span class="kn">import</span> <span class="n">frames</span><span class="p">,</span> <span class="n">get_sunearth_distance</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sunpy.coordinates</span> <span class="k">import</span> <span class="n">frames</span><span class="p">,</span> <span class="n">get_sunearth_distance</span>
 </pre></div>
 </div>
 <p>SunPy defines HeliographicStonyhurst, HeliographicCarrington, Heliocentric,
 and Helioprojective. Let’s define the center of the Sun</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sun</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="mi">0</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">arcsec</span><span class="p">,</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">arcsec</span><span class="p">,</span> <span class="n">obstime</span><span class="o">=</span><span class="n">midnight</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="n">frames</span><span class="o">.</span><span class="n">Helioprojective</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sun</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="mi">0</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">arcsec</span><span class="p">,</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">arcsec</span><span class="p">,</span> <span class="n">obstime</span><span class="o">=</span><span class="n">midnight</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="n">frames</span><span class="o">.</span><span class="n">Helioprojective</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The position in the sky from the DKIST site is</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sun_altaz</span> <span class="o">=</span> <span class="n">sun</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">AltAz</span><span class="p">(</span><span class="n">obstime</span><span class="o">=</span><span class="n">midnight</span><span class="p">,</span><span class="n">location</span><span class="o">=</span><span class="n">dkist</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Altitude is {0} and Azimuth is {1}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sun_altaz</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">alt</span><span class="p">,</span> <span class="n">sun_altaz</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">az</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sun_altaz</span> <span class="o">=</span> <span class="n">sun</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">AltAz</span><span class="p">(</span><span class="n">obstime</span><span class="o">=</span><span class="n">midnight</span><span class="p">,</span><span class="n">location</span><span class="o">=</span><span class="n">dkist</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Altitude is </span><span class="si">{0}</span><span class="s1"> and Azimuth is </span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sun_altaz</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">alt</span><span class="p">,</span> <span class="n">sun_altaz</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">az</span><span class="p">))</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Altitude is -86.69112094873573 deg and Azimuth is 317.3715065677231 deg
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Altitude is -86.6911208369448 deg and Azimuth is 317.37150456889816 deg
 </pre></div>
 </div>
 <p>As expected the Sun is below the horizon! Let’s consider noon now.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">noon</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="s1">&#39;2018-11-14 12:00:00&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="n">utcoffset</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">noon</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="s1">&#39;2018-11-14 12:00:00&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="n">utcoffset</span>
 <span class="n">sun_altaz</span> <span class="o">=</span> <span class="n">sun</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">AltAz</span><span class="p">(</span><span class="n">obstime</span><span class="o">=</span><span class="n">noon</span><span class="p">,</span><span class="n">location</span><span class="o">=</span><span class="n">dkist</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Altitude is {0} and Azimuth is {1}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sun_altaz</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">alt</span><span class="p">,</span> <span class="n">sun_altaz</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">az</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Altitude is </span><span class="si">{0}</span><span class="s1"> and Azimuth is </span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sun_altaz</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">alt</span><span class="p">,</span> <span class="n">sun_altaz</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">az</span><span class="p">))</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Altitude is 50.83409609313162 deg and Azimuth is 176.42374111145406 deg
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Altitude is 50.83409609130078 deg and Azimuth is 176.42374089800512 deg
 </pre></div>
 </div>
 <p>Next let’s check this calculation by converting it back to helioprojective.
 We should get our original input which was the center of the Sun.
 To go from Altitude/Azimuth to Helioprojective, you will need the distance
 to the Sun. solar distance. Define distance with SunPy’s almanac.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">distance</span> <span class="o">=</span> <span class="n">get_sunearth_distance</span><span class="p">(</span><span class="n">noon</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">distance</span> <span class="o">=</span> <span class="n">get_sunearth_distance</span><span class="p">(</span><span class="n">noon</span><span class="p">)</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">az</span><span class="o">=</span><span class="n">sun_altaz</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">az</span><span class="p">,</span> <span class="n">alt</span><span class="o">=</span><span class="n">sun_altaz</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">alt</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="n">distance</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="n">AltAz</span><span class="p">(</span><span class="n">obstime</span><span class="o">=</span><span class="n">noon</span><span class="p">,</span><span class="n">location</span><span class="o">=</span><span class="n">dkist</span><span class="p">))</span>
 <span class="n">sun_helioproj</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">frames</span><span class="o">.</span><span class="n">Helioprojective</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;The helioprojective point is {0}, {1}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sun_helioproj</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">Tx</span><span class="p">,</span> <span class="n">sun_helioproj</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">Ty</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The helioprojective point is </span><span class="si">{0}</span><span class="s1">, </span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sun_helioproj</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">Tx</span><span class="p">,</span> <span class="n">sun_helioproj</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">Ty</span><span class="p">))</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The helioprojective point is -0.008005327549653884 arcsec, 0.9685168694878177 arcsec
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The helioprojective point is -0.008005327549653884 arcsec, 0.9685168694942247 arcsec
 </pre></div>
 </div>
 <p>Let’s now show off how we can convert between Solar coordinates Coordinates.
 Transform to HeliographicStonyhurst</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sun</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">frames</span><span class="o">.</span><span class="n">HeliographicStonyhurst</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sun</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">frames</span><span class="o">.</span><span class="n">HeliographicStonyhurst</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Transform to Heliocentric</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sun</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">frames</span><span class="o">.</span><span class="n">Heliocentric</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sun</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">frames</span><span class="o">.</span><span class="n">Heliocentric</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Transform to HeliographicCarrington</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sun</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">frames</span><span class="o">.</span><span class="n">HeliographicCarrington</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sun</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">frames</span><span class="o">.</span><span class="n">HeliographicCarrington</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  3.896 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.470 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-gallery-coordinates-demo-py">
 <div class="sphx-glr-download docutils container">
 <a class="reference download internal" download="" href="../../_downloads/72cf4ffb0b3355d68e71d82ba1ca3fea/coordinates_demo.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">coordinates_demo.py</span></code></a></div>
@@ -245,7 +246,7 @@ Transform to HeliographicStonyhurst</p>
       &copy;2018, HelioPython.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
