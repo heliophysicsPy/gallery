@@ -5,7 +5,7 @@ version: 2
 pip-run: &pip-install
   name: Install Python dependencies
   command: |
-    pip install tox-conda
+    pip install "tox~=3.7.0" tox-conda
 
 jobs:
 
