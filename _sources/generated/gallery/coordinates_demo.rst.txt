@@ -111,7 +111,7 @@ Can also register positions of objects or do object lookups
  .. code-block:: none
 
     <SkyCoord (ICRS): (ra, dec) in deg
-        (83.633083, 22.0145)>
+        (83.63308333, 22.0145)>
 
 
 let's consider now consider a position in the sky from a specific location
@@ -185,8 +185,8 @@ We can now get the position of the Crab in the sky as observed from DKIST
  .. code-block:: none
 
     <SkyCoord (AltAz: obstime=2018-11-14 10:00:00.000, location=(-5466027.73432422, -2404324.10015092, 2242293.2433644) m, pressure=0.0 hPa, temperature=0.0 deg_C, relative_humidity=0.0, obswl=1.0 micron): (az, alt) in deg
-        (80.97673527, 55.8613432)>
-    Crab's Altitude = 55.86134320242592 deg
+        (80.97673523, 55.8613429)>
+    Crab's Altitude = 55.86134289751109 deg
 
 
 Let's now move on to showing how SunPy extends AstroPy coordinates by
@@ -328,7 +328,7 @@ Transform to HeliographicCarrington
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.578 seconds)
+   **Total running time of the script:** ( 0 minutes  2.563 seconds)
 
 
 .. _sphx_glr_download_generated_gallery_coordinates_demo.py:
