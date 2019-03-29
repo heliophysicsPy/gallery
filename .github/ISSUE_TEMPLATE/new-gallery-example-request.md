@@ -1,9 +1,8 @@
 ---
 name: New gallery example request
 about: This template is for requests for new examples
-title: 'New example to show how to <add words here>'
+title: 'Add a new example to show how to <add words here>'
 labels: new example request
-assignees: ''
 
 ---
 
