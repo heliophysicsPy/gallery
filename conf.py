@@ -106,6 +106,9 @@ html_static_path = ['_static']
 #
 # html_sidebars = {}
 
+html_css_files = ['css/custom.css',
+                  'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css',
+				  'https://use.fontawesome.com/releases/v5.5.0/css/all.css']
 
 # -- Options for HTMLHelp output ---------------------------------------------
 
@@ -226,6 +229,4 @@ sphinx_gallery_conf = {
     # 'line_numbers': True
 }
 
-def setup(app):
-	app.add_stylesheet('css/custom.css')
 	
