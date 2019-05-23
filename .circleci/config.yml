@@ -5,13 +5,12 @@ version: 2
 pip-run: &pip-install
   name: Install Python dependencies
   command: |
-    pip install "tox~=3.7.0" tox-conda
+    sudo pip install tox
 
 jobs:
-
   build:
     docker:
-      - image: continuumio/miniconda3
+      - image: circleci/python:3.7
 
     steps:
       - checkout
