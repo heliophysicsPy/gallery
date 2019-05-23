@@ -94,7 +94,7 @@ html_theme_options = {}
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-# html_static_path = ['_static']
+html_static_path = ['_static']
 
 # Custom sidebar templates, must be a dictionary that maps document names
 # to template names.
@@ -106,6 +106,9 @@ html_theme_options = {}
 #
 # html_sidebars = {}
 
+html_css_files = ['css/custom.css',
+                  'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css',
+				  'https://use.fontawesome.com/releases/v5.5.0/css/all.css']
 
 # -- Options for HTMLHelp output ---------------------------------------------
 
@@ -225,3 +228,5 @@ sphinx_gallery_conf = {
     'plot_gallery': True,
     # 'line_numbers': True
 }
+
+	
