@@ -23,15 +23,17 @@ refer to an existing tutorial file.
 
 Building
 --------
-If you'd like to build the gallery on your local machine you'll need to install
-sphinx as well as sphinx-gallery with the following commands
+If you'd like to build the gallery on your local machine the easiest way is to use tox.
 
-pip install sphinx
-pip install sphinx-gallery
-
-To build the gallery run the following command in the root directory.
-
-make html
+    $ pip install tox
+    $ tox
 
 The generated output can then be found in `_build/html/index.html` and can
 be viewed with any web browser.
+
+
+Adding New Dependencies
+-------------------------
+
+If your example needs a package the gallery currently doesn't use then you
+should add it to the list in the `tox.ini` file in the root of the repository.
