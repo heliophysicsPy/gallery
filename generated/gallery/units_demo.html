@@ -38,7 +38,7 @@
             
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-generated-gallery-units-demo-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-generated-gallery-units-demo-py"><span class="std std-ref">here</span></a> to download the full example code or run this example in your browser via Binder</p>
 </div>
 <div class="sphx-glr-example-title section" id="quantities-units-and-constants">
 <span id="sphx-glr-generated-gallery-units-demo-py"></span><h1>Quantities, Units, and Constants<a class="headerlink" href="#quantities-units-and-constants" title="Permalink to this headline">¶</a></h1>
@@ -55,12 +55,12 @@ with physical quantities, such as meters, seconds, Hz, etc.</p>
 (a number with a unit) in a number of different ways.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">42.0</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">meter</span>
 <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">s</span>
-<span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">Hz</span>
+<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.arange.html#numpy.arange" title="View documentation for numpy.arange"><span class="n">np</span><span class="o">.</span><span class="n">arange</span></a><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">Hz</span>
 </pre></div>
 </div>
 <p>These objects work as you would expect with most Python operators or numpy
 functions</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.power.html#numpy.power" title="View documentation for numpy.power"><span class="n">np</span><span class="o">.</span><span class="n">power</span></a><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
 </pre></div>
 </div>
@@ -99,9 +99,9 @@ another unit.</p>
 <a class="reference external" href="http://docs.astropy.org/en/stable/units/index.html#module-astropy.units.equivalencies" title="(in Astropy v3.1.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">equivalencies</span></code></a>.
 For example, we can convert the GOES wavelength range to Hz or keV easily using
 the <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.equivalencies.spectral.html#astropy.units.equivalencies.spectral" title="(in Astropy v3.1.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spectral</span></code></a>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;Hz&#39;</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">spectral</span><span class="p">()))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;Hz&#39;</span><span class="p">,</span> <a href="http://docs.astropy.org/en/stable/api/astropy.units.spectral.html#astropy.units.spectral" title="View documentation for astropy.units.spectral"><span class="n">u</span><span class="o">.</span><span class="n">spectral</span></a><span class="p">()))</span>
 
-<span class="nb">print</span><span class="p">(([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;keV&#39;</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">spectral</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;keV&#39;</span><span class="p">,</span> <a href="http://docs.astropy.org/en/stable/api/astropy.units.spectral.html#astropy.units.spectral" title="View documentation for astropy.units.spectral"><span class="n">u</span><span class="o">.</span><span class="n">spectral</span></a><span class="p">()))</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -160,8 +160,11 @@ documentation for more details and Python 2 instructions):</p>
     <span class="k">return</span> <span class="n">length</span> <span class="o">/</span> <span class="n">time</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.751 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.641 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-gallery-units-demo-py">
+<div class="binder-badge docutils container">
+<a class="reference external image-reference" href="https://mybinder.org/v2/gh/HeliophysicsPy/gallery/gh-pages?urlpath=lab/tree/notebooks/generated/gallery/units_demo.ipynb"><img alt="https://mybinder.org/badge_logo.svg" src="https://mybinder.org/badge_logo.svg" width="150px" /></a>
+</div>
 <div class="sphx-glr-download docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/466cbdaa683b8928d1c3c58921ac45b9/units_demo.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">units_demo.py</span></code></a></p>
 </div>
