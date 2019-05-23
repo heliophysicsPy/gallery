@@ -227,6 +227,14 @@ sphinx_gallery_conf = {
     'abort_on_example_error': False,
     'plot_gallery': True,
     # 'line_numbers': True
+    'binder': {
+        'org': 'HeliophysicsPy',
+        'repo': 'gallery',
+        'ref': 'gh-pages',
+        'binderhub_url': 'https://mybinder.org',
+        'dependencies': 'requirements.txt',
+        'use_jupyter_lab': True
+      }
 }
 
 	
