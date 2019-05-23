@@ -21,6 +21,14 @@ For the required syntax see the
 documentation. Since the syntax is fairly straightforward you may also just
 refer to an existing tutorial file.
 
+
+Previewing your Example
+-------------------------
+
+Once you open a pull request the build system will build and preview the site
+for you. There will be a check called "Giles" which will let you view the site
+and ensure that your example is formatted as you wish.
+
 Building
 --------
 If you'd like to build the gallery on your local machine the easiest way is to use tox.
