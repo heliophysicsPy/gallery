@@ -213,20 +213,26 @@ extensions += ["sphinx_gallery.gen_gallery"]
 path = pathlib.Path.cwd()
 example_dir = path.joinpath('gallery')
 sphinx_gallery_conf = {
-    'backreferences_dir': path.joinpath('generated', 'modules'),  # path to store the module using example template
-    'filename_pattern': '^((?!skip_).)*$',  # execute all examples except those that start with "skip_"
-    'examples_dirs': example_dir,  # path to the examples scripts
-    'gallery_dirs': path.joinpath('generated', 'gallery'),  # path to save gallery generated examples
-    #'default_thumb_file': path.joinpath('logo', 'sunpy_icon_128x128.png'),
-    # 'reference_url': {
-    #     'sunpy': 'https://docs.sunpy.org/en/latest',
-    #     'astropy': 'http://docs.astropy.org/en/stable',
-    #     'matplotlib': 'https://matplotlib.org',
-    #     'numpy': 'http://docs.scipy.org/doc/numpy',
-    # },
+    'backreferences_dir': path.joinpath('generated', 'modules'),
+    'filename_pattern': '^((?!skip_).)*$',
+    'examples_dirs': example_dir,
+    'gallery_dirs': "generated/gallery",
     'abort_on_example_error': False,
     'plot_gallery': True,
-    # 'line_numbers': True
+    'binder': {
+        'org': 'HeliophysicsPy',
+        'repo': 'gallery',
+        'branch': 'gh-pages',
+        'binderhub_url': 'https://mybinder.org',
+        'dependencies': 'requirements.txt',
+        'use_jupyter_lab': True
+    }
 }
-
-	
+# 'default_thumb_file': path.joinpath('logo', 'sunpy_icon_128x128.png'),
+# 'reference_url': {
+#     'sunpy': 'https://docs.sunpy.org/en/latest',
+#     'astropy': 'http://docs.astropy.org/en/stable',
+#     'matplotlib': 'https://matplotlib.org',
+#     'numpy': 'http://docs.scipy.org/doc/numpy',
+# },
+# 'line_numbers': True

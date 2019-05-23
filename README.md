@@ -44,4 +44,4 @@ Adding New Dependencies
 -------------------------
 
 If your example needs a package the gallery currently doesn't use then you
-should add it to the list in the `tox.ini` file in the root of the repository.
+should add it to the list in the `requirements.txt` file in the root of the repository.
