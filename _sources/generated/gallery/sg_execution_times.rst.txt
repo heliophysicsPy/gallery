@@ -5,7 +5,8 @@
 
 Computation times
 =================
-**00:03.663** total execution time for **generated_gallery** files:
+**00:04.606** total execution time for **generated_gallery** files:
 
-- **00:03.023**: :ref:`sphx_glr_generated_gallery_coordinates_demo.py` (``coordinates_demo.py``)
-- **00:00.641**: :ref:`sphx_glr_generated_gallery_units_demo.py` (``units_demo.py``)
+- **00:03.487**: :ref:`sphx_glr_generated_gallery_coordinates_demo.py` (``coordinates_demo.py``)
+- **00:01.054**: :ref:`sphx_glr_generated_gallery_planet_locations.py` (``planet_locations.py``)
+- **00:00.065**: :ref:`sphx_glr_generated_gallery_units_demo.py` (``units_demo.py``)
