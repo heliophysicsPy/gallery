@@ -1,3 +1,5 @@
 numpy
 astropy
 sunpy
+pytplot
+urllib
