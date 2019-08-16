@@ -1,6 +1,6 @@
 numpy
 astropy
 sunpy
-pytplo
+pytplot
 pyspedas
 
