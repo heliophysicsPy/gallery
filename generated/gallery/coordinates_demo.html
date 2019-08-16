@@ -18,6 +18,7 @@
     <script type="text/javascript" src="../../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="PyTplot Demo" href="pytplot_demo.html" />
     <link rel="prev" title="Quantities, Units, and Constants" href="units_demo.html" />
    
   <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
@@ -43,8 +44,8 @@
 <span id="sphx-glr-generated-gallery-coordinates-demo-py"></span><h1>Astropy Coordinates and SunPy Demo<a class="headerlink" href="#astropy-coordinates-and-sunpy-demo" title="Permalink to this headline">¶</a></h1>
 <p>Written by Steven Christe and presented at the Heliopython meeting on
 November 13-15, 2018. The purpose of this demo is to show off the AstroPy coordinates
-framework as well as show how SunPy extends it to add solar coordinate systems.
-The astropy coordinates package provides classes for representing a variety
+framework as well as show how SunPy extends it to add solar coordinate systems.</p>
+<p>The astropy coordinates package provides classes for representing a variety
 of celestial/spatial coordinates and their velocity components, as well as
 tools for converting between common coordinate systems in a uniform way.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy</span> <span class="k">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
@@ -96,7 +97,11 @@ on the Earth.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>(-1601184.40191992, -5041989.95569235, 3554875.07685646) m
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/circleci/project/.tox/build_gallery/lib/python3.7/site-packages/astropy/utils/data.py:995: CacheMissingWarning: Remote data cache could not be accessed due to OSError: Could not find unix home directory to search for astropy config dir
+  warn(CacheMissingWarning(msg + e.__class__.__name__ + estr))
+/home/circleci/project/.tox/build_gallery/lib/python3.7/site-packages/astropy/utils/data.py:1083: CacheMissingWarning: (&#39;File downloaded to temporary location due to problem with cache directory and will not be cached.&#39;, &#39;/tmp/tmp4c4u21xw&#39;)
+  warn(CacheMissingWarning(msg, local_path))
+(-1601184.40191992, -5041989.95569235, 3554875.07685646) m
 </pre></div>
 </div>
 <p>Using a position on the Earth we can calculate Alt/Az, since dkist is missing
@@ -113,7 +118,9 @@ from the library, let’s add it as a position</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;SkyCoord (AltAz: obstime=2018-11-14 10:00:00.000, location=(-5466027.73432422, -2404324.10015092, 2242293.2433644) m, pressure=0.0 hPa, temperature=0.0 deg_C, relative_humidity=0.0, obswl=1.0 micron): (az, alt) in deg
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/circleci/project/.tox/build_gallery/lib/python3.7/site-packages/astropy/utils/data.py:1083: CacheMissingWarning: (&#39;File downloaded to temporary location due to problem with cache directory and will not be cached.&#39;, &#39;/tmp/tmpnzsn7aad&#39;)
+  warn(CacheMissingWarning(msg, local_path))
+&lt;SkyCoord (AltAz: obstime=2018-11-14 10:00:00.000, location=(-5466027.73432422, -2404324.10015092, 2242293.2433644) m, pressure=0.0 hPa, temperature=0.0 deg_C, relative_humidity=0.0, obswl=1.0 micron): (az, alt) in deg
     (80.97673523, 55.8613429)&gt;
 Crab&#39;s Altitude = 55.86134289751109 deg
 </pre></div>
@@ -134,7 +141,7 @@ and Helioprojective. Let’s define the center of the Sun</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Altitude is -86.6911208369448 deg and Azimuth is 317.37150456889816 deg
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Altitude is -86.69112083712616 deg and Azimuth is 317.371504568982 deg
 </pre></div>
 </div>
 <p>As expected the Sun is below the horizon! Let’s consider noon now.</p>
@@ -144,7 +151,7 @@ and Helioprojective. Let’s define the center of the Sun</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Altitude is 50.83409609130078 deg and Azimuth is 176.42374089800512 deg
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Altitude is 50.8340961859787 deg and Azimuth is 176.42374082669465 deg
 </pre></div>
 </div>
 <p>Next let’s check this calculation by converting it back to helioprojective.
@@ -158,7 +165,10 @@ to the Sun. solar distance. Define distance with SunPy’s almanac.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The helioprojective point is -0.008005327549653884 arcsec, 0.9685168694942247 arcsec
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/circleci/project/.tox/build_gallery/lib/python3.7/site-packages/sunpy/util/decorators.py:92: SunpyDeprecationWarning: The get_sunearth_distance function is deprecated and may be removed in a future version.
+        Use sunpy.coordinates.sun.earth_distance instead.
+  warnings.warn(message, category)
+The helioprojective point is -0.008007531985640526 arcsec, 0.9687855318860116 arcsec
 </pre></div>
 </div>
 <p>Let’s now show off how we can convert between Solar coordinates Coordinates.
@@ -174,7 +184,7 @@ Transform to HeliographicStonyhurst</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sun</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><a href="http://docs.sunpy.org/en/stable/api/sunpy.coordinates.frames.HeliographicCarrington.html#sunpy.coordinates.frames.HeliographicCarrington" title="View documentation for sunpy.coordinates.frames.HeliographicCarrington"><span class="n">frames</span><span class="o">.</span><span class="n">HeliographicCarrington</span></a><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.487 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.667 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-gallery-coordinates-demo-py">
 <div class="binder-badge docutils container">
 <a class="reference external image-reference" href="https://mybinder.org/v2/gh/HeliophysicsPy/gallery/gh-pages?urlpath=lab/tree/notebooks/generated/gallery/coordinates_demo.ipynb"><img alt="https://mybinder.org/badge_logo.svg" src="https://mybinder.org/badge_logo.svg" width="150px" /></a>
@@ -186,7 +196,7 @@ Transform to HeliographicStonyhurst</p>
 <p><a class="reference download internal" download="" href="../../_downloads/52d240c12754f69b0dec29b80fec9980/coordinates_demo.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">coordinates_demo.ipynb</span></code></a></p>
 </div>
 </div>
-<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Gallery generated by Sphinx-Gallery</a></p>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
 </div>
 
 
@@ -211,6 +221,7 @@ Transform to HeliographicStonyhurst</p>
 <li class="toctree-l2"><a class="reference internal" href="planet_locations.html">Planet Positions in the Solar System</a></li>
 <li class="toctree-l2"><a class="reference internal" href="units_demo.html">Quantities, Units, and Constants</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Astropy Coordinates and SunPy Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pytplot_demo.html">PyTplot Demo</a></li>
 </ul>
 </li>
 </ul>
@@ -221,15 +232,16 @@ Transform to HeliographicStonyhurst</p>
   <li><a href="../../index.html">Documentation overview</a><ul>
   <li><a href="index.html">Python in Heliophysics Community Gallery</a><ul>
       <li>Previous: <a href="units_demo.html" title="previous chapter">Quantities, Units, and Constants</a></li>
+      <li>Next: <a href="pytplot_demo.html" title="next chapter">PyTplot Demo</a></li>
   </ul></li>
   </ul></li>
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -251,7 +263,7 @@ Transform to HeliographicStonyhurst</p>
       &copy;2018, PyHC.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

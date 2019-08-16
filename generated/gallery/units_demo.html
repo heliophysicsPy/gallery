@@ -43,15 +43,15 @@
 <div class="sphx-glr-example-title section" id="quantities-units-and-constants">
 <span id="sphx-glr-generated-gallery-units-demo-py"></span><h1>Quantities, Units, and Constants<a class="headerlink" href="#quantities-units-and-constants" title="Permalink to this headline">¶</a></h1>
 <p>The purpose of this demo is to demonstrate the capabilities of astropy
-<a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.Unit.html#astropy.units.Unit" title="(in Astropy v3.1.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Unit</span></code></a>, <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.Quantity.html#astropy.units.Quantity" title="(in Astropy v3.1.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Quantity</span></code></a>, and <code class="xref py py-obj docutils literal notranslate"><span class="pre">Constant</span></code>.
-The astropy <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.Quantity.html#astropy.units.Quantity" title="(in Astropy v3.1.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Quantity</span></code></a> object
+<a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.Unit.html#astropy.units.Unit" title="(in Astropy v3.2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Unit</span></code></a>, <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.Quantity.html#astropy.units.Quantity" title="(in Astropy v3.2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Quantity</span></code></a>, and <code class="xref py py-obj docutils literal notranslate"><span class="pre">Constant</span></code>.</p>
+<p>The astropy <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.Quantity.html#astropy.units.Quantity" title="(in Astropy v3.2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Quantity</span></code></a> object
 handles defining, converting between, and performing arithmetic
 with physical quantities, such as meters, seconds, Hz, etc.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy</span> <span class="k">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
-<p>You can define a <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.Quantity.html#astropy.units.Quantity" title="(in Astropy v3.1.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Quantity</span></code></a>
+<p>You can define a <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.Quantity.html#astropy.units.Quantity" title="(in Astropy v3.2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Quantity</span></code></a>
 (a number with a unit) in a number of different ways.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">42.0</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">meter</span>
 <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">s</span>
@@ -73,7 +73,7 @@ functions</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The value is 42.0 and the unit is m
 </pre></div>
 </div>
-<p>Using the <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.Quantity.html#astropy.units.Quantity.to" title="(in Astropy v3.1.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to</span></code></a> function we can easily converted to
+<p>Using the <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.Quantity.html#astropy.units.Quantity.to" title="(in Astropy v3.2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to</span></code></a> function we can easily converted to
 another unit.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;parsec&#39;</span><span class="p">))</span>
 </pre></div>
@@ -96,9 +96,9 @@ another unit.</p>
 </pre></div>
 </div>
 <p>More complex conversions are also supported using
-<a class="reference external" href="http://docs.astropy.org/en/stable/units/index.html#module-astropy.units.equivalencies" title="(in Astropy v3.1.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">equivalencies</span></code></a>.
+<a class="reference external" href="http://docs.astropy.org/en/stable/units/index.html#module-astropy.units.equivalencies" title="(in Astropy v3.2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">equivalencies</span></code></a>.
 For example, we can convert the GOES wavelength range to Hz or keV easily using
-the <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.equivalencies.spectral.html#astropy.units.equivalencies.spectral" title="(in Astropy v3.1.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spectral</span></code></a>.</p>
+the <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.units.equivalencies.spectral.html#astropy.units.equivalencies.spectral" title="(in Astropy v3.2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spectral</span></code></a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;Hz&#39;</span><span class="p">,</span> <a href="http://docs.astropy.org/en/stable/api/astropy.units.spectral.html#astropy.units.spectral" title="View documentation for astropy.units.spectral"><span class="n">u</span><span class="o">.</span><span class="n">spectral</span></a><span class="p">()))</span>
 
 <span class="nb">print</span><span class="p">(([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;keV&#39;</span><span class="p">,</span> <a href="http://docs.astropy.org/en/stable/api/astropy.units.spectral.html#astropy.units.spectral" title="View documentation for astropy.units.spectral"><span class="n">u</span><span class="o">.</span><span class="n">spectral</span></a><span class="p">()))</span>
@@ -160,7 +160,7 @@ documentation for more details and Python 2 instructions):</p>
     <span class="k">return</span> <span class="n">length</span> <span class="o">/</span> <span class="n">time</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.065 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.052 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-gallery-units-demo-py">
 <div class="binder-badge docutils container">
 <a class="reference external image-reference" href="https://mybinder.org/v2/gh/HeliophysicsPy/gallery/gh-pages?urlpath=lab/tree/notebooks/generated/gallery/units_demo.ipynb"><img alt="https://mybinder.org/badge_logo.svg" src="https://mybinder.org/badge_logo.svg" width="150px" /></a>
@@ -172,7 +172,7 @@ documentation for more details and Python 2 instructions):</p>
 <p><a class="reference download internal" download="" href="../../_downloads/a90161360888bc60feca747ef6c16939/units_demo.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">units_demo.ipynb</span></code></a></p>
 </div>
 </div>
-<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Gallery generated by Sphinx-Gallery</a></p>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
 </div>
 
 
@@ -197,6 +197,7 @@ documentation for more details and Python 2 instructions):</p>
 <li class="toctree-l2"><a class="reference internal" href="planet_locations.html">Planet Positions in the Solar System</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Quantities, Units, and Constants</a></li>
 <li class="toctree-l2"><a class="reference internal" href="coordinates_demo.html">Astropy Coordinates and SunPy Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pytplot_demo.html">PyTplot Demo</a></li>
 </ul>
 </li>
 </ul>
@@ -213,10 +214,10 @@ documentation for more details and Python 2 instructions):</p>
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -238,7 +239,7 @@ documentation for more details and Python 2 instructions):</p>
       &copy;2018, PyHC.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
