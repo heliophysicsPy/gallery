@@ -2,5 +2,4 @@ numpy
 astropy
 sunpy
 pytplot
-urllib
 pyspedas
