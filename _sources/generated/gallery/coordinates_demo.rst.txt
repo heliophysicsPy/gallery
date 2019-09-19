@@ -151,7 +151,7 @@ Many positions are already availabe such as that of the VLA.
 
     /home/circleci/project/.tox/build_gallery/lib/python3.7/site-packages/astropy/utils/data.py:995: CacheMissingWarning: Remote data cache could not be accessed due to OSError: Could not find unix home directory to search for astropy config dir
       warn(CacheMissingWarning(msg + e.__class__.__name__ + estr))
-    /home/circleci/project/.tox/build_gallery/lib/python3.7/site-packages/astropy/utils/data.py:1083: CacheMissingWarning: ('File downloaded to temporary location due to problem with cache directory and will not be cached.', '/tmp/tmp4c4u21xw')
+    /home/circleci/project/.tox/build_gallery/lib/python3.7/site-packages/astropy/utils/data.py:1083: CacheMissingWarning: ('File downloaded to temporary location due to problem with cache directory and will not be cached.', '/tmp/tmpjq2w595f')
       warn(CacheMissingWarning(msg, local_path))
     (-1601184.40191992, -5041989.95569235, 3554875.07685646) m
 
@@ -192,7 +192,7 @@ We can now get the position of the Crab in the sky as observed from DKIST
 
  .. code-block:: none
 
-    /home/circleci/project/.tox/build_gallery/lib/python3.7/site-packages/astropy/utils/data.py:1083: CacheMissingWarning: ('File downloaded to temporary location due to problem with cache directory and will not be cached.', '/tmp/tmpnzsn7aad')
+    /home/circleci/project/.tox/build_gallery/lib/python3.7/site-packages/astropy/utils/data.py:1083: CacheMissingWarning: ('File downloaded to temporary location due to problem with cache directory and will not be cached.', '/tmp/tmp75x8tpdv')
       warn(CacheMissingWarning(msg, local_path))
     <SkyCoord (AltAz: obstime=2018-11-14 10:00:00.000, location=(-5466027.73432422, -2404324.10015092, 2242293.2433644) m, pressure=0.0 hPa, temperature=0.0 deg_C, relative_humidity=0.0, obswl=1.0 micron): (az, alt) in deg
         (80.97673523, 55.8613429)>
@@ -269,7 +269,7 @@ As expected the Sun is below the horizon! Let's consider noon now.
 
  .. code-block:: none
 
-    Altitude is 50.8340961859787 deg and Azimuth is 176.42374082669465 deg
+    Altitude is 50.832804900088675 deg and Azimuth is 176.41945121728892 deg
 
 
 
@@ -299,7 +299,7 @@ to the Sun. solar distance. Define distance with SunPy’s almanac.
     /home/circleci/project/.tox/build_gallery/lib/python3.7/site-packages/sunpy/util/decorators.py:92: SunpyDeprecationWarning: The get_sunearth_distance function is deprecated and may be removed in a future version.
             Use sunpy.coordinates.sun.earth_distance instead.
       warnings.warn(message, category)
-    The helioprojective point is -0.008007531985640526 arcsec, 0.9687855318860116 arcsec
+    The helioprojective point is -7.698552616871893 arcsec, 0.9000330890096738 arcsec
 
 
 
@@ -345,7 +345,7 @@ Transform to HeliographicCarrington
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.667 seconds)
+   **Total running time of the script:** ( 0 minutes  33.626 seconds)
 
 
 .. _sphx_glr_download_generated_gallery_coordinates_demo.py:

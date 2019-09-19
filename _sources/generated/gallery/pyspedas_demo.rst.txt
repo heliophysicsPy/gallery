@@ -1,0 +1,468 @@
+.. note::
+    :class: sphx-glr-download-link-note
+
+    Click :ref:`here <sphx_glr_download_generated_gallery_pyspedas_demo.py>` to download the full example code or run this example in your browser via Binder
+.. rst-class:: sphx-glr-example-title
+
+.. _sphx_glr_generated_gallery_pyspedas_demo.py:
+
+
+====================================
+pyspedas Demo
+====================================
+
+Written by Nick Hatzigeorgiu. 
+
+The purpose of this demo is to demonstrate some of the capabilities of the pyspedas package.
+
+The pyspedas package contains functions for downloading data from NASA missions 
+and tools for data analysis and data plotting. It works together with 
+the pytplot and the cdflib packages.
+
+Pyspedas is a python implementation of the SPEDAS software which is written 
+in the IDL programming language. For more information on SPEDAS, 
+see: http://spedas.org/wiki/
+
+
+.. code-block:: default
+
+    from pyspedas import load_data, gmag_list, subtract_average, version
+    from pytplot import del_data, get_data, store_data, ylim, tplot, tplot_options, tplot_names
+
+
+
+
+
+
+
+Load and plot THEMIS data
+###################################################################################
+
+Pyspedas uses a preferences file (spd_prefs_txt.py) which contains the variables
+that determine the local path for saving cdf files. The user can change this
+path, if he wants to. We can find the location of the pyspedas preferences file
+and the version of the installed pyspedas package, using the function version(). 
+
+
+.. code-block:: default
+
+    version()
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Preferences file: /home/circleci/project/.tox/build_gallery/lib/python3.7/site-packages/pyspedas/spd_prefs_txt.py
+    pyspedas version: 0.8.23
+
+
+
+Delete any existing pytplot variables
+
+
+.. code-block:: default
+
+    del_data()
+
+
+
+
+
+
+
+Define a time range. Here, we pick a time range that spans one and a half day.
+
+
+.. code-block:: default
+
+    time_range = ['2015-12-31 00:00:00', '2016-01-01 12:00:00']
+
+
+
+
+
+
+
+Download THEMIS state data and store it into the pytplot object.
+This following function downloads all the necessary files, loads data, 
+and time-clips data to the specified time range. 
+
+
+.. code-block:: default
+
+    load_data('themis', time_range, ['tha'], 'state', 'l1')
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    /home/circleci/project/.tox/build_gallery/lib/python3.7/site-packages/pyspedas/spd_prefs_txt.py
+    Preferences file: /home/circleci/project/.tox/build_gallery/lib/python3.7/site-packages/pyspedas/spd_prefs_txt.py
+    1. File was downloaded. Location: C:\\Datapy\\themis/tha/l1/state/2015/tha_l1_state_20151231_v02.cdf
+    Exception ignored in: <socket.socket [closed] fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6>
+    ResourceWarning: unclosed <socket.socket [closed] fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6>
+    Exception ignored in: <socket.socket [closed] fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6>
+    ResourceWarning: unclosed <socket.socket [closed] fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6>
+    2. File was downloaded. Location: C:\\Datapy\\themis/tha/l1/state/2016/tha_l1_state_20160101_v02.cdf
+    Exception ignored in: <socket.socket [closed] fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6>
+    ResourceWarning: unclosed <socket.socket [closed] fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6>
+    Exception ignored in: <socket.socket [closed] fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6>
+    ResourceWarning: unclosed <socket.socket [closed] fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6>
+    Time clip was applied to: tha_pos
+    Time clip was applied to: tha_vel
+    Time clip was applied to: tha_spin_initial_delta_phi
+    Time clip was applied to: tha_spin_idpu_spinper
+    Time clip was applied to: tha_spin_segflags
+    Time clip was applied to: tha_spin_ecl_initial_delta_phi
+    Time clip was applied to: tha_spin_ecl_idpu_spinper
+    Time clip was applied to: tha_spin_ecl_segflags
+    Time clip was applied to: tha_pos_gse
+    Time clip was applied to: tha_pos_gsm
+    Time clip was applied to: tha_vel_gse
+    Time clip was applied to: tha_vel_gsm
+    Time clip was applied to: tha_pos_sel
+    Time clip was applied to: tha_pos_sse
+    Time clip was applied to: tha_vel_sel
+    Time clip was applied to: tha_vel_sse
+    Downloaded 2 files.
+    tplot variables:
+    ['tha_pos', 'tha_vel', 'tha_spin_initial_delta_phi', 'tha_spin_idpu_spinper', 'tha_spin_segflags', 'tha_spin_ecl_initial_delta_phi', 'tha_spin_ecl_idpu_spinper', 'tha_spin_ecl_segflags', 'tha_pos_gse', 'tha_pos_gsm', 'tha_vel_gse', 'tha_vel_gsm', 'tha_pos_sel', 'tha_pos_sse', 'tha_vel_sel', 'tha_vel_sse']
+    Data loading finished.
+
+
+
+Get data from pytplot object into python variables. 
+This is useful when we want to work on the data using standard python libraries.
+
+
+.. code-block:: default
+
+    alldata = get_data("tha_vel")
+    time = alldata[0]
+    data = alldata[1]
+
+
+
+
+
+
+
+After working with the data, we can store a new pytplot variable. 
+We can store any data in the pytplot object. 
+
+
+.. code-block:: default
+
+    store_data("tha_new_vel", data={'x': time, 'y': data})
+
+
+
+
+
+
+
+Preparing for the plots, we define the y-axis limits.
+
+
+.. code-block:: default
+
+    ylim('tha_pos', -23000.0, 81000.0)
+    ylim('tha_new_vel', -8.0, 12.0)
+
+
+
+
+
+
+
+We plot the position and the velocity using the pyqtgraph library (the default). 
+Another option is to plot using the bokeh library.
+
+
+.. code-block:: default
+
+    tplot(["tha_pos", "tha_new_vel"])
+
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Qt was not successfully imported.  Specify save_file to save the file as a .html file.
+
+
+
+Load and plot GMAG data
+###################################################################################
+
+Delete any existing pytplot variables, and define a time range.  
+
+
+.. code-block:: default
+
+    del_data()
+    time_range = ['2015-12-31 00:00:00', '2015-12-31 23:59:59']
+
+
+
+
+
+
+
+GMAG stations are organized in groups. For a list of all available GMAG groups 
+and all GMAG stations, see: http://themis.ssl.berkeley.edu/gmag/gmag_list.php
+
+Get a list of the GMAG stations that belong to the EPO group.
+
+
+.. code-block:: default
+
+    sites = gmag_list(group='epo')
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    bmls: from 2005-09-27 00:00:00 to 2016-01-26 00:00:00
+    ccnv: from 2004-07-23 00:00:00 to 2018-07-11 00:00:00
+    drby: from 2005-10-25 00:00:00 to 2014-05-19 00:00:00
+    hots: from 2004-09-09 00:00:00 to 2015-08-21 00:00:00
+    loys: from 2005-10-28 00:00:00 to 2019-08-03 00:00:00
+    ptrs: from 2004-09-19 00:00:00 to 2017-10-06 00:00:00
+    ukia: from 2004-10-01 00:00:00 to 2016-11-10 00:00:00
+
+
+
+Download cdf files for all EPO GMAG stations and load data into pytplot variables.
+
+Some GMAG stations may not have any data files for the specified time interval. 
+In that case, we will get an error message that the remote file does not exist
+for that GMAG station.  
+
+
+.. code-block:: default
+
+    load_data('gmag', time_range, sites, '', '')
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    /home/circleci/project/.tox/build_gallery/lib/python3.7/site-packages/pyspedas/spd_prefs_txt.py
+    Preferences file: /home/circleci/project/.tox/build_gallery/lib/python3.7/site-packages/pyspedas/spd_prefs_txt.py
+    1. There was a problem. Could not download                   file: http://themis.ssl.berkeley.edu/data/themis/thg/l2/mag/bmls/2015/thg_l2_mag_bmls_20151231_v01.cdf
+    HTTP Error 404: Not Found
+    2. File was downloaded. Location: C:\\Datapy\\/thg/l2/mag/ccnv/2015/thg_l2_mag_ccnv_20151231_v01.cdf
+    ['thg_mag_ccnv']
+    3. There was a problem. Could not download                   file: http://themis.ssl.berkeley.edu/data/themis/thg/l2/mag/drby/2015/thg_l2_mag_drby_20151231_v01.cdf
+    HTTP Error 404: Not Found
+    4. There was a problem. Could not download                   file: http://themis.ssl.berkeley.edu/data/themis/thg/l2/mag/hots/2015/thg_l2_mag_hots_20151231_v01.cdf
+    HTTP Error 404: Not Found
+    5. There was a problem. Could not download                   file: http://themis.ssl.berkeley.edu/data/themis/thg/l2/mag/loys/2015/thg_l2_mag_loys_20151231_v01.cdf
+    HTTP Error 404: Not Found
+    6. File was downloaded. Location: C:\\Datapy\\/thg/l2/mag/ptrs/2015/thg_l2_mag_ptrs_20151231_v01.cdf
+    ['thg_mag_ptrs']
+    7. File was downloaded. Location: C:\\Datapy\\/thg/l2/mag/ukia/2015/thg_l2_mag_ukia_20151231_v01.cdf
+    ['thg_mag_ukia']
+    Downloaded 3 files.
+    tplot variables:
+    ['thg_mag_ccnv', 'thg_mag_ptrs', 'thg_mag_ukia']
+    Data loading finished.
+
+
+
+Print the names of the loaded GMAG sites. 
+
+
+.. code-block:: default
+
+    sites_loaded = tplot_names()
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    0 : thg_mag_ccnv
+    1 : thg_mag_ptrs
+    2 : thg_mag_ukia
+
+
+
+Subtract the average values for these sites.
+
+
+.. code-block:: default
+
+    subtract_average(sites_loaded, '')
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Subtract Average was applied to: thg_mag_ccnv
+    Subtract Average was applied to: thg_mag_ptrs
+    Subtract Average was applied to: thg_mag_ukia
+
+
+
+Download AE index data.
+
+
+.. code-block:: default
+
+    load_data('gmag', time_range, ['idx'], '', '')
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    /home/circleci/project/.tox/build_gallery/lib/python3.7/site-packages/pyspedas/spd_prefs_txt.py
+    Preferences file: /home/circleci/project/.tox/build_gallery/lib/python3.7/site-packages/pyspedas/spd_prefs_txt.py
+    1. File was downloaded. Location: C:\\Datapy\\/thg/l1/mag/idx/2015/thg_l1_idx_20151231_v01.cdf
+    ['thg_idx_al', 'thg_idx_au', 'thg_idx_ae']
+    Downloaded 1 files.
+    tplot variables:
+    ['thg_mag_ccnv', 'thg_mag_ptrs', 'thg_mag_ukia', 'thg_idx_al', 'thg_idx_au', 'thg_idx_ae']
+    Data loading finished.
+
+
+
+Get a list of all the loaded GMAG sites plus the AE index data. 
+
+
+.. code-block:: default
+
+    sites_loaded = tplot_names()
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    0 : thg_mag_ccnv
+    1 : thg_mag_ptrs
+    2 : thg_mag_ukia
+    3 : thg_idx_al
+    4 : thg_idx_au
+    5 : thg_idx_ae
+
+
+
+Plot GMAG and AE index data.
+Use the bokeh library - the plots will appear in the web browser.
+
+
+.. code-block:: default
+
+    tplot_options('title', 'EPO GMAG 2015-12-31')
+    tplot(sites_loaded, bokeh=True)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Qt was not successfully imported.  Specify save_file to save the file as a .html file.
+
+
+
+Note: The HTML web page for this example may be missing the plots but this is a 
+limitation of the platform for this particular gallery - 
+if you run the python code locally, the plots will appear. 
+
+
+.. rst-class:: sphx-glr-timing
+
+   **Total running time of the script:** ( 0 minutes  13.971 seconds)
+
+
+.. _sphx_glr_download_generated_gallery_pyspedas_demo.py:
+
+
+.. only :: html
+
+ .. container:: sphx-glr-footer
+    :class: sphx-glr-footer-example
+
+
+  .. container:: binder-badge
+
+    .. image:: https://mybinder.org/badge_logo.svg
+      :target: https://mybinder.org/v2/gh/HeliophysicsPy/gallery/gh-pages?urlpath=lab/tree/notebooks/generated/gallery/pyspedas_demo.ipynb
+      :width: 150 px
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Python source code: pyspedas_demo.py <pyspedas_demo.py>`
+
+
+
+  .. container:: sphx-glr-download
+
+     :download:`Download Jupyter notebook: pyspedas_demo.ipynb <pyspedas_demo.ipynb>`
+
+
+.. only:: html
+
+ .. rst-class:: sphx-glr-signature
+
+    `Gallery generated by Sphinx-Gallery <https://sphinx-gallery.github.io>`_

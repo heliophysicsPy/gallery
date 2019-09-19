@@ -1,0 +1,354 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>pyspedas Demo &#8212; Python in Heliophysics Community (PyHC) Tutorials  documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Quantities, Units, and Constants" href="units_demo.html" />
+    <link rel="prev" title="Planet Positions in the Solar System" href="planet_locations.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-generated-gallery-pyspedas-demo-py"><span class="std std-ref">here</span></a> to download the full example code or run this example in your browser via Binder</p>
+</div>
+<div class="sphx-glr-example-title section" id="pyspedas-demo">
+<span id="sphx-glr-generated-gallery-pyspedas-demo-py"></span><h1>pyspedas Demo<a class="headerlink" href="#pyspedas-demo" title="Permalink to this headline">¶</a></h1>
+<p>Written by Nick Hatzigeorgiu.</p>
+<p>The purpose of this demo is to demonstrate some of the capabilities of the pyspedas package.</p>
+<p>The pyspedas package contains functions for downloading data from NASA missions
+and tools for data analysis and data plotting. It works together with
+the pytplot and the cdflib packages.</p>
+<p>Pyspedas is a python implementation of the SPEDAS software which is written
+in the IDL programming language. For more information on SPEDAS,
+see: <a class="reference external" href="http://spedas.org/wiki/">http://spedas.org/wiki/</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspedas</span> <span class="k">import</span> <span class="n">load_data</span><span class="p">,</span> <span class="n">gmag_list</span><span class="p">,</span> <span class="n">subtract_average</span><span class="p">,</span> <span class="n">version</span>
+<span class="kn">from</span> <span class="nn">pytplot</span> <span class="k">import</span> <span class="n">del_data</span><span class="p">,</span> <span class="n">get_data</span><span class="p">,</span> <span class="n">store_data</span><span class="p">,</span> <span class="n">ylim</span><span class="p">,</span> <span class="n">tplot</span><span class="p">,</span> <span class="n">tplot_options</span><span class="p">,</span> <span class="n">tplot_names</span>
+</pre></div>
+</div>
+<div class="section" id="load-and-plot-themis-data">
+<h2>Load and plot THEMIS data<a class="headerlink" href="#load-and-plot-themis-data" title="Permalink to this headline">¶</a></h2>
+<p>Pyspedas uses a preferences file (spd_prefs_txt.py) which contains the variables
+that determine the local path for saving cdf files. The user can change this
+path, if he wants to. We can find the location of the pyspedas preferences file
+and the version of the installed pyspedas package, using the function version().</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">version</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Preferences file: /home/circleci/project/.tox/build_gallery/lib/python3.7/site-packages/pyspedas/spd_prefs_txt.py
+pyspedas version: 0.8.23
+</pre></div>
+</div>
+<p>Delete any existing pytplot variables</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">del_data</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Define a time range. Here, we pick a time range that spans one and a half day.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time_range</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2015-12-31 00:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;2016-01-01 12:00:00&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Download THEMIS state data and store it into the pytplot object.
+This following function downloads all the necessary files, loads data,
+and time-clips data to the specified time range.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;themis&#39;</span><span class="p">,</span> <span class="n">time_range</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;tha&#39;</span><span class="p">],</span> <span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="s1">&#39;l1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/circleci/project/.tox/build_gallery/lib/python3.7/site-packages/pyspedas/spd_prefs_txt.py
+Preferences file: /home/circleci/project/.tox/build_gallery/lib/python3.7/site-packages/pyspedas/spd_prefs_txt.py
+1. File was downloaded. Location: C:\\Datapy\\themis/tha/l1/state/2015/tha_l1_state_20151231_v02.cdf
+Exception ignored in: &lt;socket.socket [closed] fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6&gt;
+ResourceWarning: unclosed &lt;socket.socket [closed] fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6&gt;
+Exception ignored in: &lt;socket.socket [closed] fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6&gt;
+ResourceWarning: unclosed &lt;socket.socket [closed] fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6&gt;
+2. File was downloaded. Location: C:\\Datapy\\themis/tha/l1/state/2016/tha_l1_state_20160101_v02.cdf
+Exception ignored in: &lt;socket.socket [closed] fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6&gt;
+ResourceWarning: unclosed &lt;socket.socket [closed] fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6&gt;
+Exception ignored in: &lt;socket.socket [closed] fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6&gt;
+ResourceWarning: unclosed &lt;socket.socket [closed] fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6&gt;
+Time clip was applied to: tha_pos
+Time clip was applied to: tha_vel
+Time clip was applied to: tha_spin_initial_delta_phi
+Time clip was applied to: tha_spin_idpu_spinper
+Time clip was applied to: tha_spin_segflags
+Time clip was applied to: tha_spin_ecl_initial_delta_phi
+Time clip was applied to: tha_spin_ecl_idpu_spinper
+Time clip was applied to: tha_spin_ecl_segflags
+Time clip was applied to: tha_pos_gse
+Time clip was applied to: tha_pos_gsm
+Time clip was applied to: tha_vel_gse
+Time clip was applied to: tha_vel_gsm
+Time clip was applied to: tha_pos_sel
+Time clip was applied to: tha_pos_sse
+Time clip was applied to: tha_vel_sel
+Time clip was applied to: tha_vel_sse
+Downloaded 2 files.
+tplot variables:
+[&#39;tha_pos&#39;, &#39;tha_vel&#39;, &#39;tha_spin_initial_delta_phi&#39;, &#39;tha_spin_idpu_spinper&#39;, &#39;tha_spin_segflags&#39;, &#39;tha_spin_ecl_initial_delta_phi&#39;, &#39;tha_spin_ecl_idpu_spinper&#39;, &#39;tha_spin_ecl_segflags&#39;, &#39;tha_pos_gse&#39;, &#39;tha_pos_gsm&#39;, &#39;tha_vel_gse&#39;, &#39;tha_vel_gsm&#39;, &#39;tha_pos_sel&#39;, &#39;tha_pos_sse&#39;, &#39;tha_vel_sel&#39;, &#39;tha_vel_sse&#39;]
+Data loading finished.
+</pre></div>
+</div>
+<p>Get data from pytplot object into python variables.
+This is useful when we want to work on the data using standard python libraries.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alldata</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="s2">&quot;tha_vel&quot;</span><span class="p">)</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">alldata</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">alldata</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>After working with the data, we can store a new pytplot variable.
+We can store any data in the pytplot object.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">store_data</span><span class="p">(</span><span class="s2">&quot;tha_new_vel&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">time</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>Preparing for the plots, we define the y-axis limits.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ylim</span><span class="p">(</span><span class="s1">&#39;tha_pos&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">23000.0</span><span class="p">,</span> <span class="mf">81000.0</span><span class="p">)</span>
+<span class="n">ylim</span><span class="p">(</span><span class="s1">&#39;tha_new_vel&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">8.0</span><span class="p">,</span> <span class="mf">12.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We plot the position and the velocity using the pyqtgraph library (the default).
+Another option is to plot using the bokeh library.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tplot</span><span class="p">([</span><span class="s2">&quot;tha_pos&quot;</span><span class="p">,</span> <span class="s2">&quot;tha_new_vel&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Qt was not successfully imported.  Specify save_file to save the file as a .html file.
+</pre></div>
+</div>
+</div>
+<div class="section" id="load-and-plot-gmag-data">
+<h2>Load and plot GMAG data<a class="headerlink" href="#load-and-plot-gmag-data" title="Permalink to this headline">¶</a></h2>
+<p>Delete any existing pytplot variables, and define a time range.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">del_data</span><span class="p">()</span>
+<span class="n">time_range</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2015-12-31 00:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;2015-12-31 23:59:59&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>GMAG stations are organized in groups. For a list of all available GMAG groups
+and all GMAG stations, see: <a class="reference external" href="http://themis.ssl.berkeley.edu/gmag/gmag_list.php">http://themis.ssl.berkeley.edu/gmag/gmag_list.php</a></p>
+<p>Get a list of the GMAG stations that belong to the EPO group.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sites</span> <span class="o">=</span> <span class="n">gmag_list</span><span class="p">(</span><span class="n">group</span><span class="o">=</span><span class="s1">&#39;epo&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>bmls: from 2005-09-27 00:00:00 to 2016-01-26 00:00:00
+ccnv: from 2004-07-23 00:00:00 to 2018-07-11 00:00:00
+drby: from 2005-10-25 00:00:00 to 2014-05-19 00:00:00
+hots: from 2004-09-09 00:00:00 to 2015-08-21 00:00:00
+loys: from 2005-10-28 00:00:00 to 2019-08-03 00:00:00
+ptrs: from 2004-09-19 00:00:00 to 2017-10-06 00:00:00
+ukia: from 2004-10-01 00:00:00 to 2016-11-10 00:00:00
+</pre></div>
+</div>
+<p>Download cdf files for all EPO GMAG stations and load data into pytplot variables.</p>
+<p>Some GMAG stations may not have any data files for the specified time interval.
+In that case, we will get an error message that the remote file does not exist
+for that GMAG station.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;gmag&#39;</span><span class="p">,</span> <span class="n">time_range</span><span class="p">,</span> <span class="n">sites</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/circleci/project/.tox/build_gallery/lib/python3.7/site-packages/pyspedas/spd_prefs_txt.py
+Preferences file: /home/circleci/project/.tox/build_gallery/lib/python3.7/site-packages/pyspedas/spd_prefs_txt.py
+1. There was a problem. Could not download                   file: http://themis.ssl.berkeley.edu/data/themis/thg/l2/mag/bmls/2015/thg_l2_mag_bmls_20151231_v01.cdf
+HTTP Error 404: Not Found
+2. File was downloaded. Location: C:\\Datapy\\/thg/l2/mag/ccnv/2015/thg_l2_mag_ccnv_20151231_v01.cdf
+[&#39;thg_mag_ccnv&#39;]
+3. There was a problem. Could not download                   file: http://themis.ssl.berkeley.edu/data/themis/thg/l2/mag/drby/2015/thg_l2_mag_drby_20151231_v01.cdf
+HTTP Error 404: Not Found
+4. There was a problem. Could not download                   file: http://themis.ssl.berkeley.edu/data/themis/thg/l2/mag/hots/2015/thg_l2_mag_hots_20151231_v01.cdf
+HTTP Error 404: Not Found
+5. There was a problem. Could not download                   file: http://themis.ssl.berkeley.edu/data/themis/thg/l2/mag/loys/2015/thg_l2_mag_loys_20151231_v01.cdf
+HTTP Error 404: Not Found
+6. File was downloaded. Location: C:\\Datapy\\/thg/l2/mag/ptrs/2015/thg_l2_mag_ptrs_20151231_v01.cdf
+[&#39;thg_mag_ptrs&#39;]
+7. File was downloaded. Location: C:\\Datapy\\/thg/l2/mag/ukia/2015/thg_l2_mag_ukia_20151231_v01.cdf
+[&#39;thg_mag_ukia&#39;]
+Downloaded 3 files.
+tplot variables:
+[&#39;thg_mag_ccnv&#39;, &#39;thg_mag_ptrs&#39;, &#39;thg_mag_ukia&#39;]
+Data loading finished.
+</pre></div>
+</div>
+<p>Print the names of the loaded GMAG sites.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sites_loaded</span> <span class="o">=</span> <span class="n">tplot_names</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>0 : thg_mag_ccnv
+1 : thg_mag_ptrs
+2 : thg_mag_ukia
+</pre></div>
+</div>
+<p>Subtract the average values for these sites.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">subtract_average</span><span class="p">(</span><span class="n">sites_loaded</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Subtract Average was applied to: thg_mag_ccnv
+Subtract Average was applied to: thg_mag_ptrs
+Subtract Average was applied to: thg_mag_ukia
+</pre></div>
+</div>
+<p>Download AE index data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;gmag&#39;</span><span class="p">,</span> <span class="n">time_range</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;idx&#39;</span><span class="p">],</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/circleci/project/.tox/build_gallery/lib/python3.7/site-packages/pyspedas/spd_prefs_txt.py
+Preferences file: /home/circleci/project/.tox/build_gallery/lib/python3.7/site-packages/pyspedas/spd_prefs_txt.py
+1. File was downloaded. Location: C:\\Datapy\\/thg/l1/mag/idx/2015/thg_l1_idx_20151231_v01.cdf
+[&#39;thg_idx_al&#39;, &#39;thg_idx_au&#39;, &#39;thg_idx_ae&#39;]
+Downloaded 1 files.
+tplot variables:
+[&#39;thg_mag_ccnv&#39;, &#39;thg_mag_ptrs&#39;, &#39;thg_mag_ukia&#39;, &#39;thg_idx_al&#39;, &#39;thg_idx_au&#39;, &#39;thg_idx_ae&#39;]
+Data loading finished.
+</pre></div>
+</div>
+<p>Get a list of all the loaded GMAG sites plus the AE index data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sites_loaded</span> <span class="o">=</span> <span class="n">tplot_names</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>0 : thg_mag_ccnv
+1 : thg_mag_ptrs
+2 : thg_mag_ukia
+3 : thg_idx_al
+4 : thg_idx_au
+5 : thg_idx_ae
+</pre></div>
+</div>
+<p>Plot GMAG and AE index data.
+Use the bokeh library - the plots will appear in the web browser.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tplot_options</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;EPO GMAG 2015-12-31&#39;</span><span class="p">)</span>
+<span class="n">tplot</span><span class="p">(</span><span class="n">sites_loaded</span><span class="p">,</span> <span class="n">bokeh</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Qt was not successfully imported.  Specify save_file to save the file as a .html file.
+</pre></div>
+</div>
+<p>Note: The HTML web page for this example may be missing the plots but this is a
+limitation of the platform for this particular gallery -
+if you run the python code locally, the plots will appear.</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  13.971 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-gallery-pyspedas-demo-py">
+<div class="binder-badge docutils container">
+<a class="reference external image-reference" href="https://mybinder.org/v2/gh/HeliophysicsPy/gallery/gh-pages?urlpath=lab/tree/notebooks/generated/gallery/pyspedas_demo.ipynb"><img alt="https://mybinder.org/badge_logo.svg" src="https://mybinder.org/badge_logo.svg" width="150px" /></a>
+</div>
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/d650ff194a0ac2afa0edab9fb2c54f32/pyspedas_demo.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">pyspedas_demo.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/643f16d2957459986dfa3efe5eea2762/pyspedas_demo.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">pyspedas_demo.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">Python in Heliophysics Community (PyHC) Tutorials</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Python in Heliophysics Community Gallery</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="planet_locations.html">Planet Positions in the Solar System</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">pyspedas Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="units_demo.html">Quantities, Units, and Constants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coordinates_demo.html">Astropy Coordinates and SunPy Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pytplot_demo.html">PyTplot Demo</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Python in Heliophysics Community Gallery</a><ul>
+      <li>Previous: <a href="planet_locations.html" title="previous chapter">Planet Positions in the Solar System</a></li>
+      <li>Next: <a href="units_demo.html" title="next chapter">Quantities, Units, and Constants</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, PyHC.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/generated/gallery/pyspedas_demo.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

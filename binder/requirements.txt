@@ -2,3 +2,4 @@ numpy
 astropy
 sunpy
 pytplot
+pyspedas
