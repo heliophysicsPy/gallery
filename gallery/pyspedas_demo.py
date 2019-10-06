@@ -18,7 +18,7 @@ The purpose of this demo is to demonstrate some of the capabilities of the pyspe
 # in the IDL programming language. For more information on SPEDAS, 
 # see: http://spedas.org/wiki/
 from pyspedas import load_data, gmag_list, subtract_average, version
-from pytplot import del_data, get_data, store_data, ylim, tplot, tplot_options, tplot_names
+from pytplot import del_data, get_data, store_data, ylim, tplot, options, tplot_options, tplot_names
 
 ####################################################################################
 # Load and plot THEMIS data
@@ -54,18 +54,30 @@ data = alldata[1]
 
 ####################################################################################
 # After working with the data, we can store a new pytplot variable. 
-# We can store any data in the pytplot object. 
+# We can also store our own data in the pytplot object.
 store_data("tha_new_vel", data={'x': time, 'y': data})
 
 ####################################################################################
-# Preparing for the plots, we define the y-axis limits.
+# Preparing for the plots, we define the y-axis limits for the two panels.
 ylim('tha_pos', -23000.0, 81000.0)
 ylim('tha_new_vel', -8.0, 12.0)
 
 ####################################################################################
+# We give a title to the plot and labels for the y-axis panels.
+tplot_options('title', 'THEMIS tha position and velocity, 2015-12-31')
+options('tha_pos','ytitle','Position')
+options('tha_new_vel','ytitle','Velocity')
+
+####################################################################################
 # We plot the position and the velocity using the pyqtgraph library (the default). 
-# Another option is to plot using the bokeh library.
 tplot(["tha_pos", "tha_new_vel"])
+
+####################################################################################
+# A new window will open, containing the following plot:
+#
+# .. image:: http://themis.ssl.berkeley.edu/images/pyspedas_demo1.png
+#    :alt: Themis tha position and velocity
+#
 
 
 ####################################################################################
@@ -82,6 +94,7 @@ time_range = ['2015-12-31 00:00:00', '2015-12-31 23:59:59']
 # and all GMAG stations, see: http://themis.ssl.berkeley.edu/gmag/gmag_list.php
 #
 # Get a list of the GMAG stations that belong to the EPO group.
+# Internally, this function uses a web service to get a list of the names.
 sites = gmag_list(group='epo')
 
 ####################################################################################
@@ -109,12 +122,13 @@ load_data('gmag', time_range, ['idx'], '', '')
 sites_loaded = tplot_names()
 
 ####################################################################################
-# Plot GMAG and AE index data.
-# Use the bokeh library - the plots will appear in the web browser.
+# Plot GMAG and AE index data, using the bokeh library.
 tplot_options('title', 'EPO GMAG 2015-12-31')
 tplot(sites_loaded, bokeh=True)
 
 ####################################################################################
-# Note: The HTML web page for this example may be missing the plots but this is a 
-# limitation of the platform for this particular gallery - 
-# if you run the python code locally, the plots will appear. 
+# The output will appear in the default web browser:
+#
+# .. image:: http://themis.ssl.berkeley.edu/images/pyspedas_demo2.png
+#    :alt: EPO GMAG plot
+#
