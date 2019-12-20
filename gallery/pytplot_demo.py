@@ -6,6 +6,11 @@ PyTplot Demo
 
 Written by Julie Barnum and Elysia Lucas. 
 The purpose of this demo is to show off some of the capabilities of PyTplot.
+Note that pyqtgraph does not work with the Sphinx Gallery plugin, so plots will
+not automatically generate. However, if you download the code and run locally,
+the plots will load as expected. Additionally, if you want to run this code in 
+Jupyter notebook, note that when you call tplot, you'll need to specify 'nb=True'
+for the plots to plot.
 """
 import urllib
 
