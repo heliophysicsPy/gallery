@@ -1,7 +1,7 @@
 # Heliopython Gallery
 A Gallery of Examples and Tutorials for the Python in Heliophysics Community.
 
-The gallery is hosted at the following url [http://heliopython.org/gallery/generated/gallery/index.html](http://heliopython.org/gallery/generated/gallery/index.html).
+The gallery is hosted at the following url [https://heliopython.org/gallery/generated/gallery/index.html](http://heliopython.org/gallery/generated/gallery/index.html).
 
 Contributing
 ------------
