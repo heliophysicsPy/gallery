@@ -102,19 +102,19 @@ subtract_average(sites_loaded, '')
 
 ####################################################################################
 # Download AE index data.
-load_data('gmag', time_range, ['idx'], '', '')
+# load_data('gmag', time_range, ['idx'], '', '')
 
-####################################################################################
-# Get a list of all the loaded GMAG sites plus the AE index data. 
-sites_loaded = tplot_names()
+# ####################################################################################
+# # Get a list of all the loaded GMAG sites plus the AE index data. 
+# sites_loaded = tplot_names()
 
-####################################################################################
-# Plot GMAG and AE index data.
-# Use the bokeh library - the plots will appear in the web browser.
-tplot_options('title', 'EPO GMAG 2015-12-31')
-tplot(sites_loaded, bokeh=True)
+# ####################################################################################
+# # Plot GMAG and AE index data.
+# # Use the bokeh library - the plots will appear in the web browser.
+# tplot_options('title', 'EPO GMAG 2015-12-31')
+# tplot(sites_loaded, bokeh=True)
 
-####################################################################################
-# Note: The HTML web page for this example may be missing the plots but this is a 
-# limitation of the platform for this particular gallery - 
-# if you run the python code locally, the plots will appear. 
+# ####################################################################################
+# # Note: The HTML web page for this example may be missing the plots but this is a 
+# # limitation of the platform for this particular gallery - 
+# # if you run the python code locally, the plots will appear. 
