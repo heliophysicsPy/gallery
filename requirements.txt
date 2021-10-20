@@ -1,5 +1,5 @@
 numpy
 astropy
 sunpy
-pytplot
-pyspedas
+pytplot==1.4.6
+pyspedas==0.8.23
