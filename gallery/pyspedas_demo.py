@@ -102,6 +102,11 @@ clean_spikes(['mms1_fgm_b_gse_brst_l2', 'mms1_fgm_b_gsm_brst_l2'])
 ####################################################################################
 # Plot the (despiked) MMS data. 
 # Use the bokeh library — the plots will appear in the web browser.
+#
+# Note how we use pytplot options to set the line colors. See the full list of 
+# options at: https://pytplot.readthedocs.io/en/latest/_modules/pytplot/options.html
+pytplot.options('mms1_fgm_b_gse_brst_l2-despike', 'color', 'red')
+pytplot.options('mms1_fgm_b_gsm_brst_l2-despike', 'color', 'blue')
 tplot(['mms1_fgm_b_gse_brst_l2-despike', 'mms1_fgm_b_gsm_brst_l2-despike'], bokeh=True)
 
 ####################################################################################
