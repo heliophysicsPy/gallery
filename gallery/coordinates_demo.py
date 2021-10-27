@@ -63,46 +63,47 @@ crab_altaz = crab.transform_to(AltAz(obstime=midnight,location=dkist))
 print(crab_altaz)
 print("Crab's Altitude = {0.alt:}".format(crab_altaz))
 
-# # #############################################################################
-# # Let's now move on to showing how SunPy extends AstroPy coordinates by
-# # adding solar coordinate systems.
-# from sunpy.coordinates import frames, get_sunearth_distance
-#
-# ##############################################################################
-# # SunPy defines HeliographicStonyhurst, HeliographicCarrington, Heliocentric,
-# # and Helioprojective. Let's define the center of the Sun
-# sun = SkyCoord(0 * u.arcsec, 0 * u.arcsec, obstime=midnight, frame=frames.Helioprojective)
-#
-# ##############################################################################
-# # The position in the sky from the DKIST site is
-# sun_altaz = sun.transform_to(AltAz(obstime=midnight,location=dkist))
-# print('Altitude is {0} and Azimuth is {1}'.format(sun_altaz.T.alt, sun_altaz.T.az))
-#
-# ##############################################################################
-# # As expected the Sun is below the horizon! Let's consider noon now.
-# noon = Time('2018-11-14 12:00:00') - utcoffset
-# sun_altaz = sun.transform_to(AltAz(obstime=noon,location=dkist))
-# print('Altitude is {0} and Azimuth is {1}'.format(sun_altaz.T.alt, sun_altaz.T.az))
-#
-# ##############################################################################
-# # Next let’s check this calculation by converting it back to helioprojective.
-# # We should get our original input which was the center of the Sun.
-# # To go from Altitude/Azimuth to Helioprojective, you will need the distance
-# # to the Sun. solar distance. Define distance with SunPy’s almanac.
-# distance = get_sunearth_distance(noon)
-# b = SkyCoord(az=sun_altaz.T.az, alt=sun_altaz.T.alt, distance=distance, frame=AltAz(obstime=noon,location=dkist))
-# sun_helioproj = b.transform_to(frames.Helioprojective)
-# print('The helioprojective point is {0}, {1}'.format(sun_helioproj.T.Tx, sun_helioproj.T.Ty))
-#
-# ##############################################################################
-# # Let's now show off how we can convert between Solar coordinates Coordinates.
-# # Transform to HeliographicStonyhurst
-# sun.transform_to(frames.HeliographicStonyhurst)
-#
-# ##############################################################################
-# # Transform to Heliocentric
-# sun.transform_to(frames.Heliocentric)
-#
-# ##############################################################################
-# # Transform to HeliographicCarrington
-# sun.transform_to(frames.HeliographicCarrington)
+# #############################################################################
+# Let's now move on to showing how SunPy extends AstroPy coordinates by
+# adding solar coordinate systems.
+from sunpy.coordinates import frames
+from sunpy.coordinates.sun import earth_distance
+
+##############################################################################
+# SunPy defines HeliographicStonyhurst, HeliographicCarrington, Heliocentric,
+# and Helioprojective. Let's define the center of the Sun
+sun = SkyCoord(0 * u.arcsec, 0 * u.arcsec, obstime=midnight, frame=frames.Helioprojective, observer='Earth')
+
+##############################################################################
+# The position in the sky from the DKIST site is
+sun_altaz = sun.transform_to(AltAz(obstime=midnight,location=dkist))
+print('Altitude is {0} and Azimuth is {1}'.format(sun_altaz.T.alt, sun_altaz.T.az))
+
+##############################################################################
+# As expected the Sun is below the horizon! Let's consider noon now.
+noon = Time('2018-11-14 12:00:00') - utcoffset
+sun_altaz = sun.transform_to(AltAz(obstime=noon,location=dkist))
+print('Altitude is {0} and Azimuth is {1}'.format(sun_altaz.T.alt, sun_altaz.T.az))
+
+##############################################################################
+# Next let’s check this calculation by converting it back to helioprojective.
+# We should get our original input which was the center of the Sun.
+# To go from Altitude/Azimuth to Helioprojective, you will need the distance
+# to the Sun. solar distance. Define distance with SunPy’s almanac.
+distance = earth_distance(noon)
+b = SkyCoord(az=sun_altaz.T.az, alt=sun_altaz.T.alt, distance=distance, frame=AltAz(obstime=noon,location=dkist), observer='Earth')
+sun_helioproj = b.transform_to(frames.Helioprojective)
+print('The helioprojective point is {0}, {1}'.format(sun_helioproj.T.Tx, sun_helioproj.T.Ty))
+
+##############################################################################
+# Let's now show off how we can convert between Solar coordinates Coordinates.
+# Transform to HeliographicStonyhurst
+sun.transform_to(frames.HeliographicStonyhurst)
+
+##############################################################################
+# Transform to Heliocentric
+sun.transform_to(frames.Heliocentric)
+
+##############################################################################
+# Transform to HeliographicCarrington
+sun.transform_to(frames.HeliographicCarrington)
