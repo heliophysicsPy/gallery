@@ -3,5 +3,5 @@ astropy==4.3.1
 sunpy==3.0.2
 matplotlib==3.4.3
 pyqtgraph==0.12.2
-pytplot==1.7.28
-pyspedas==1.2.8
+# pytplot==1.7.28
+# pyspedas==1.2.8
