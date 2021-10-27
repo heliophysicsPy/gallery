@@ -25,6 +25,7 @@ jobs:
       - run:
           name: Build documentation
           command: |
+            sudo apt install libgl1-mesa-glx libegl1 -y
             tox -e build_gallery
 
       - store_artifacts:
