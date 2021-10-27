@@ -25,6 +25,7 @@ jobs:
       - run:
           name: Build documentation
           command: |
+            sudo apt-get install qt5-default
             sudo apt-get install libxcb-randr0-dev libxcb-xtest0-dev libxcb-xinerama0-dev libxcb-shape0-dev libxcb-xkb-dev -y
             sudo apt install libgl1-mesa-glx libegl1 -y
             tox -e build_gallery
