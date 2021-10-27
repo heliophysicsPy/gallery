@@ -17,8 +17,10 @@ The purpose of this demo is to demonstrate some of the capabilities of the pyspe
 # pySPEDAS is a python implementation of the SPEDAS software which is written 
 # in the IDL programming language. For more information on SPEDAS, 
 # see: http://spedas.org/wiki/
+!pip install --upgrade https://github.com/MAVENSDC/PyTplot/archive/matplotlib-backend.zip
+!pip install pyspedas==1.2.2 
 import pyspedas
-from pytplot.MPLPlotter.tplot import tplot
+from pytplot.MPLPlotter.tplot import tplot  #from pytplot import tplot
 import pytplot
 from pyspedas import clean_spikes, version
 from pytplot import del_data, get_data, store_data, tplot_options, tplot_names#, tplot
