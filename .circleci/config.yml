@@ -27,7 +27,7 @@ jobs:
       - run:
           name: Build documentation
           command: |
-            export QT_DEBUG_PLUGINS=1
+            export QT_DEBUG_PLUGINS="1"
             tox -e build_gallery
 
       - store_artifacts:
