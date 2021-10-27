@@ -26,6 +26,8 @@ jobs:
           name: Build documentation
           command: |
             tox -e build_gallery
+          environment:
+            QT_DEBUG_PLUGINS: 1
 
       - store_artifacts:
           path: _build/html
