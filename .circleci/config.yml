@@ -6,6 +6,8 @@ pip-run: &pip-install
   name: Install Python dependencies
   command: |
     sudo pip install tox
+    sudo pip install --upgrade https://github.com/MAVENSDC/PyTplot/archive/matplotlib-backend.zip
+    sudo pip install pyspedas==1.2.2
 
 jobs:
   build:
