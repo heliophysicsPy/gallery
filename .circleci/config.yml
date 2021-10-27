@@ -26,6 +26,7 @@ jobs:
           name: Build documentation
           command: |
             export QT_DEBUG_PLUGINS=1
+            sudo apt-get install --reinstall libxcb-xinerama0
             tox -e build_gallery
 
       - store_artifacts:
