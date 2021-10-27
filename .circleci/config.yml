@@ -25,7 +25,7 @@ jobs:
       - run:
           name: Build documentation
           command: |
-            QT_DEBUG_PLUGINS=1
+            QT_DEBUG_PLUGINS="1"
             echo $QT_DEBUG_PLUGINS
             tox -e build_gallery
 
