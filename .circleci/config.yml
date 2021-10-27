@@ -25,9 +25,7 @@ jobs:
       - run:
           name: Build documentation
           command: |
-            sudo apt-get install qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools
-            sudo apt-get install libxcb-randr0-dev libxcb-xtest0-dev libxcb-xinerama0-dev libxcb-shape0-dev libxcb-xkb-dev -y
-            sudo apt install libgl1-mesa-glx libegl1 -y
+            export QT_DEBUG_PLUGINS=1
             tox -e build_gallery
 
       - store_artifacts:
