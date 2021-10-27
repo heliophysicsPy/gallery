@@ -27,6 +27,7 @@ jobs:
           command: |
             pip install --upgrade https://github.com/MAVENSDC/PyTplot/archive/matplotlib-backend.zip
             pip install pyspedas==1.2.2 
+            pip list
             tox -e build_gallery
           environment:
             QT_DEBUG_PLUGINS: 1
