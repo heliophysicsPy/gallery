@@ -17,10 +17,7 @@ The purpose of this demo is to demonstrate some of the capabilities of the pyspe
 # pySPEDAS is a python implementation of the SPEDAS software which is written 
 # in the IDL programming language. For more information on SPEDAS, 
 # see: http://spedas.org/wiki/
-# !pip install --upgrade https://github.com/MAVENSDC/PyTplot/archive/matplotlib-backend.zip
-# !pip install pyspedas==1.2.2 
 import pyspedas
-# from pytplot.MPLPlotter.tplot import tplot  #from pytplot import tplot
 import pytplot
 from pyspedas import clean_spikes, version
 from pytplot import del_data, get_data, store_data, tplot_options, tplot_names, tplot
@@ -74,7 +71,7 @@ store_data("new_thd_fgs_gse", data={'x': time, 'y': data})
 ####################################################################################
 # We plot the data using the pyqtgraph library (the default). 
 # Another option is to plot using the bokeh library.
-tplot(['thd_fgs_gse', 'thd_fgs_gsm'])
+#tplot(['thd_fgs_gse', 'thd_fgs_gsm'])
 
 ####################################################################################
 # Load and plot MMS data
@@ -110,7 +107,7 @@ clean_spikes(['mms1_fgm_b_gse_brst_l2', 'mms1_fgm_b_gsm_brst_l2'])
 # options at: https://pytplot.readthedocs.io/en/latest/_modules/pytplot/options.html
 pytplot.options('mms1_fgm_b_gse_brst_l2-despike', 'color', 'red')
 pytplot.options('mms1_fgm_b_gsm_brst_l2-despike', 'color', 'blue')
-tplot(['mms1_fgm_b_gse_brst_l2-despike', 'mms1_fgm_b_gsm_brst_l2-despike'], bokeh=True)
+#tplot(['mms1_fgm_b_gse_brst_l2-despike', 'mms1_fgm_b_gsm_brst_l2-despike'], bokeh=True)
 
 ####################################################################################
 # Note: The HTML web page for this example may be missing the plots but this is a 
