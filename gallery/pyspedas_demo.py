@@ -18,7 +18,7 @@ The purpose of this demo is to demonstrate some of the capabilities of the pyspe
 # in the IDL programming language. For more information on SPEDAS, 
 # see: http://spedas.org/wiki/
 import pyspedas
-import pytplot
+#import pytplot
 from pyspedas import clean_spikes, version
 from pytplot import del_data, get_data, store_data, tplot_options, tplot_names, tplot
 
