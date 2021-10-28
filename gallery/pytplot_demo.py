@@ -155,14 +155,14 @@ pytplot.timebar('2016-06-20 01:15:32', thick=3, color='green')
 # You can also log axes in both the spectrogram plots ('xlog' and 'zlog' options),
 # and the interactive plots ('xlog_interactive' and 'ylog_interactive' options).
 
-pytplot.options('swia_counts', 'ylog', 1)  # setting to 0 would make the y-axis linear
-pytplot.options('swia_counts', 'zlog', 1)  # setting ot 0 would make the z-axis linear
-pytplot.options('swia_counts', 'xlog_interactive', True)  # Setting to False would make the x-axis linear
-pytplot.options('swia_counts', 'ylog_interactive', True)  # Setting to False would make the y-axis linear
-pytplot.options('swia_counts', 'static_tavg', ['2016-06-20 12:00:00', '2016-06-20 13:00:00'])
-pytplot.options('swia_counts', 'static', '2016-06-20 01:00:57')
-pytplot.options('swia_counts', 't_average', 1200)
-pytplot.tplot('swia_counts')
+# pytplot.options('swia_counts', 'ylog', 1)  # setting to 0 would make the y-axis linear
+# pytplot.options('swia_counts', 'zlog', 1)  # setting ot 0 would make the z-axis linear
+# pytplot.options('swia_counts', 'xlog_interactive', True)  # Setting to False would make the x-axis linear
+# pytplot.options('swia_counts', 'ylog_interactive', True)  # Setting to False would make the y-axis linear
+# pytplot.options('swia_counts', 'static_tavg', ['2016-06-20 12:00:00', '2016-06-20 13:00:00'])
+# pytplot.options('swia_counts', 'static', '2016-06-20 01:00:57')
+# pytplot.options('swia_counts', 't_average', 1200)
+# pytplot.tplot('swia_counts')
 
 ##############################################################################
 # Saving output
