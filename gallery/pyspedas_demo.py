@@ -4,7 +4,7 @@
 pyspedas Demo
 ====================================
 
-Written by Nick Hatzigeorgiu. 
+Written by Nick Hatzigeorgiu and Shawn Polson. 
 
 The purpose of this demo is to demonstrate some of the capabilities of the pyspedas package.
 """
@@ -20,7 +20,7 @@ The purpose of this demo is to demonstrate some of the capabilities of the pyspe
 import pyspedas
 #import pytplot
 from pyspedas import clean_spikes, version
-from pytplot import del_data, get_data, store_data, tplot_options, tplot_names, tplot
+#from pytplot import del_data, get_data, store_data, tplot_options, tplot_names, tplot
 
 ####################################################################################
 # Load and plot THEMIS data
@@ -38,7 +38,7 @@ version()
 
 ####################################################################################
 # Delete any existing pytplot variables.
-del_data()
+#del_data()
 
 ####################################################################################
 # Define a time range. Here, we pick a time range that spans one day.
@@ -59,19 +59,19 @@ thm_fgm = pyspedas.themis.fgm(trange=time_range, probe='d')
 #
 # Get data from pytplot object into python variables. 
 # This is useful when we want to work on the data using standard python libraries.
-all_data = get_data("thd_fgs_gse")
-time = all_data[0]
-data = all_data[1]
+# all_data = get_data("thd_fgs_gse")
+# time = all_data[0]
+# data = all_data[1]
 
 ####################################################################################
 # After working with the data, we can store a new pytplot variable. 
 # We can store any data in the pytplot object. 
-store_data("new_thd_fgs_gse", data={'x': time, 'y': data})
+# store_data("new_thd_fgs_gse", data={'x': time, 'y': data})
 
 ####################################################################################
 # We plot the data using the pyqtgraph library (the default). 
 # Another option is to plot using the bokeh library.
-#tplot(['thd_fgs_gse', 'thd_fgs_gsm'])
+# tplot(['thd_fgs_gse', 'thd_fgs_gsm'])
 
 ####################################################################################
 # Load and plot MMS data
@@ -79,7 +79,7 @@ store_data("new_thd_fgs_gse", data={'x': time, 'y': data})
 
 ####################################################################################
 # Delete any existing pytplot variables, and define a time range.  
-del_data()
+#del_data()
 time_range = ['2015-10-16/13:05:30', '2015-10-16/13:07:30']
 
 ####################################################################################
@@ -92,7 +92,7 @@ mms_fgm = pyspedas.mms.fgm(trange=['2015-10-16/13:05:30', '2015-10-16/13:07:30']
 ####################################################################################
 # The names of the loaded tplot variables are printed. You can print the names of 
 # all currently-loaded tplot variables at any time using `pyspedas.tnames()`:
-pyspedas.tnames()
+# pyspedas.tnames()
 
 ####################################################################################
 # pySPEDAS has a number of helpful analysis routines under `pyspedas.analysis`. 
@@ -105,9 +105,9 @@ clean_spikes(['mms1_fgm_b_gse_brst_l2', 'mms1_fgm_b_gsm_brst_l2'])
 #
 # Note how we use pytplot options to set the line colors. See the full list of 
 # options at: https://pytplot.readthedocs.io/en/latest/_modules/pytplot/options.html
-pytplot.options('mms1_fgm_b_gse_brst_l2-despike', 'color', 'red')
-pytplot.options('mms1_fgm_b_gsm_brst_l2-despike', 'color', 'blue')
-#tplot(['mms1_fgm_b_gse_brst_l2-despike', 'mms1_fgm_b_gsm_brst_l2-despike'], bokeh=True)
+# pytplot.options('mms1_fgm_b_gse_brst_l2-despike', 'color', 'red')
+# pytplot.options('mms1_fgm_b_gsm_brst_l2-despike', 'color', 'blue')
+# tplot(['mms1_fgm_b_gse_brst_l2-despike', 'mms1_fgm_b_gsm_brst_l2-despike'], bokeh=True)
 
 ####################################################################################
 # Note: The HTML web page for this example may be missing the plots but this is a 
