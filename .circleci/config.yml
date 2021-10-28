@@ -5,6 +5,8 @@ version: 2
 pip-run: &pip-install
   name: Install Python dependencies
   command: |
+    sudo pip install --upgrade https://github.com/MAVENSDC/PyTplot/archive/matplotlib-backend.zip
+    sudo pip install pyspedas==1.2.2 
     sudo pip install tox
 
 jobs:
@@ -25,8 +27,6 @@ jobs:
       - run:
           name: Build documentation
           command: |
-            sudo pip install --upgrade https://github.com/MAVENSDC/PyTplot/archive/matplotlib-backend.zip
-            sudo pip install pyspedas==1.2.2 
             sudo pip list
             tox -e build_gallery
           environment:
