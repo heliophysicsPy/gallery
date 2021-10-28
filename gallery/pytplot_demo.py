@@ -98,10 +98,10 @@ pytplot.tplot_options('data_gap', 80)
 # Displaying data using tplot
 # ---------------------------
 # Single Panel Plot
-pytplot.tplot('swia_vel')  # or, pytplot.tplot(6)
+# pytplot.tplot('swia_vel')  # or, pytplot.tplot(6)
 
 # Multiple Panel Plot
-pytplot.tplot(['swia_counts', 'swia_vel', 'mag'])  # or, pytplot.tplot([4,6,7])
+# pytplot.tplot(['swia_counts', 'swia_vel', 'mag'])  # or, pytplot.tplot([4,6,7])
 
 ##############################################################################
 # Interacting with Data Plots
@@ -125,14 +125,14 @@ pytplot.tplot(['swia_counts', 'swia_vel', 'mag'])  # or, pytplot.tplot([4,6,7])
 # Crosshairs can be modified to be not displayed...
 
 pytplot.tplot_options('crosshair', False)
-pytplot.tplot('swia_counts')
+# pytplot.tplot('swia_counts')
 
 # and crosshair names can be modified.
 pytplot.tplot_options('crosshair', True)  # Just re-adding the crosshairs
 pytplot.options('swia_counts', 'crosshair_x', 'XXX')
 pytplot.options('swia_counts', 'crosshair_y', 'YYY')
 pytplot.options('swia_counts', 'crosshair_z', 'ZZZ')
-pytplot.tplot('swia_counts')
+# pytplot.tplot('swia_counts')
 
 # Adding timebars
 # To place a vertical line at a specific time on all panels:
