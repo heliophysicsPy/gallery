@@ -5,10 +5,9 @@ version: 2
 pip-run: &pip-install
   name: Install Python dependencies
   command: |
-    sudo apt update && sudo apt install -y libxkbcommon-x11-0
-    sudo apt install x11-utils
-    sudo apt-get install xinit openbox slim
-    startx
+    sudo apt-get install xvfb firefox
+    Xvfb :99 &
+    export DISPLAY=:99
     sudo pip install tox
 
 jobs:
