@@ -8,6 +8,7 @@ pip-run: &pip-install
     sudo apt-get install xvfb
     Xvfb :99 &
     export DISPLAY=:99
+    xvfb-run
     sudo pip install tox
 
 jobs:
