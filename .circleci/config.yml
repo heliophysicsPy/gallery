@@ -8,7 +8,6 @@ pip-run: &pip-install
     sudo apt-get install xvfb
     Xvfb :99 &
     export DISPLAY=:99
-    xvfb-run
     sudo pip install tox
 
 jobs:
@@ -29,7 +28,7 @@ jobs:
       - run:
           name: Build documentation
           command: |
-            tox -e build_gallery
+            xvfb-run tox -e build_gallery
           environment:
             QT_QPA_PLATFORM: offscreen
             QT_DEBUG_PLUGINS: 1
