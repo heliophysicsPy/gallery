@@ -9,7 +9,7 @@ The purpose of this demo is to show off some of the capabilities of PyTplot.
 """
 import urllib
 
-# import pytplot
+import pytplot
 
 ##############################################################################
 # Loading data into memory
