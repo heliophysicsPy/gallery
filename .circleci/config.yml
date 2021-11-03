@@ -28,7 +28,7 @@ jobs:
             echo $QT_QPA_PLATFORM
             tox -e build_gallery
           environment:
-            QT_QPA_PLATFORM: offscreen
+            QT_QPA_PLATFORM: "offscreen"
 
       - store_artifacts:
           path: _build/html
