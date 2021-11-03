@@ -5,7 +5,7 @@ version: 2
 pip-run: &pip-install
   name: Install Python dependencies
   command: |
-    sudo apt-get install xvfb firefox
+    sudo apt-get install xvfb
     Xvfb :99 &
     export DISPLAY=:99
     sudo pip install tox
