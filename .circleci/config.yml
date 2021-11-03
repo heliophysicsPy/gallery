@@ -7,12 +7,7 @@ pip-run: &pip-install
   command: |
     sudo apt update && sudo apt install -y libxkbcommon-x11-0
     sudo apt install x11-utils
-    sudo apt-get install xserver-xorg-core --no-install-recommends --no-install-suggests
-    sudo apt-get install openbox --no-install-recommends --no-install-suggests
-    sudo apt-get install xinit
-    sudo apt install xorg-xinit
-    sudo apt-get install slim
-    sudo service slim start
+    sudo apt-get install xinit openbox slim
     startx
     sudo pip install tox
 
