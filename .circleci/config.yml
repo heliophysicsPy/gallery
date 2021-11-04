@@ -5,10 +5,13 @@ version: 2
 pip-run: &pip-install
   name: Install Python dependencies
   command: |
+    echo $DISPLAY
     sudo apt-get install xvfb
-    Xvfb :99 &
-    export DISPLAY=:99
+    sudo apt-get install xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic
+    Xvfb :1 -screen 0 1920x1080x24 &
     sudo pip install tox
+  environment:
+    DISPLAY: :1
 
 jobs:
   build:
@@ -28,7 +31,7 @@ jobs:
       - run:
           name: Build documentation
           command: |
-            xvfb-run tox -e build_gallery
+            tox -e build_gallery
           environment:
             QT_QPA_PLATFORM: offscreen
             QT_DEBUG_PLUGINS: 1
