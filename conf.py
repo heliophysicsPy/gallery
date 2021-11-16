@@ -20,8 +20,8 @@ import pathlib
 
 # -- Project information -----------------------------------------------------
 
-project = 'Python in Heliophysics Community (PyHC) Tutorials'
-copyright = '2018, PyHC'
+project = 'PyHC Tutorials'
+copyright = '2021, PyHC'
 author = 'PyHC'
 
 # The short X.Y version

@@ -6,3 +6,5 @@ Welcome to the Python in Heliophysics Gallery
    :glob:
 
    generated/gallery/index
+
+* `Back to the Main Site <https://heliopython.org>`_
