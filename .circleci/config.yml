@@ -6,7 +6,6 @@ pip-run: &pip-install
   name: Install Python dependencies
   command: |
     sudo pip install tox
-    sudo apt-get install gedit
 
 jobs:
   build:
