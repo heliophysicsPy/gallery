@@ -71,7 +71,7 @@ store_data("new_thd_fgs_gse", data={'x': time, 'y': data})
 ####################################################################################
 # We plot the data using the pyqtgraph library (the default). 
 # Another option is to plot using the bokeh library.
-# tplot(['thd_fgs_gse', 'thd_fgs_gsm'])
+tplot(['thd_fgs_gse', 'thd_fgs_gsm'])
 
 ####################################################################################
 # Load and plot MMS data
@@ -86,8 +86,8 @@ time_range = ['2015-10-16/13:05:30', '2015-10-16/13:07:30']
 # Load and plot two minutes of MMS burst mode FGM data:
 #
 # First we make an `mms_auth_info` pickle file with blank credentials 
-# in the home directory which skips a prompt that would ask for an
-# SDC username (a prompt that you could submit blank).
+# in the home directory—this skips a prompt that would ask for an
+# SDC username (a prompt that you could just submit blank).
 import os
 import pickle
 pickle.dump({'user': '', 'passwd': ''}, open(os.sep.join([os.path.expanduser('~'), 'mms_auth_info.pkl']), 'wb'))
@@ -112,7 +112,7 @@ clean_spikes(['mms1_fgm_b_gse_brst_l2', 'mms1_fgm_b_gsm_brst_l2'])
 # options at: https://pytplot.readthedocs.io/en/latest/_modules/pytplot/options.html
 pytplot.options('mms1_fgm_b_gse_brst_l2-despike', 'color', 'red')
 pytplot.options('mms1_fgm_b_gsm_brst_l2-despike', 'color', 'blue')
-# tplot(['mms1_fgm_b_gse_brst_l2-despike', 'mms1_fgm_b_gsm_brst_l2-despike'], bokeh=True)
+tplot(['mms1_fgm_b_gse_brst_l2-despike', 'mms1_fgm_b_gsm_brst_l2-despike'], bokeh=True)
 
 ####################################################################################
 # Note: The HTML web page for this example may be missing the plots but this is a 
