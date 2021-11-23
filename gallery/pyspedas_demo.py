@@ -73,7 +73,7 @@ store_data("new_thd_fgs_gse", data={'x': time, 'y': data})
 ####################################################################################
 # We plot the data using the pyqtgraph library (the default). 
 # Another option is to plot using the bokeh library.
-# tplot(['thd_fgs_gse', 'thd_fgs_gsm'])
+tplot(['thd_fgs_gse', 'thd_fgs_gsm'])
 
 ####################################################################################
 # Load and plot MMS data
@@ -114,7 +114,7 @@ pytplot.options('mms1_fgm_b_gse_brst_l2-despike', 'color', 'red')
 pytplot.options('mms1_fgm_b_gsm_brst_l2-despike', 'color', 'blue')
 
 # os.putenv("XDG_RUNTIME_DIR", os.path.expanduser('~'))
-# tplot(['mms1_fgm_b_gse_brst_l2-despike', 'mms1_fgm_b_gsm_brst_l2-despike'], bokeh=True)
+tplot(['mms1_fgm_b_gse_brst_l2-despike', 'mms1_fgm_b_gsm_brst_l2-despike'], bokeh=True)
 
 ####################################################################################
 # Note: The HTML web page for this example may be missing the plots but this is a 
