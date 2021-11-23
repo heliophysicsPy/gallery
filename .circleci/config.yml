@@ -26,9 +26,11 @@ jobs:
       - run:
           name: Build documentation
           command: |
+            echo "QT_QPA_PLATFORM: $QT_QPA_PLATFORM"
             tox -e build_gallery
           environment:
             QT_DEBUG_PLUGINS: 1
+            QT_QPA_PLATFORM: offscreen
 
       - store_artifacts:
           path: _build/html
