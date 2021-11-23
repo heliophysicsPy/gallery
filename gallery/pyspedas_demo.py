@@ -73,7 +73,7 @@ store_data("new_thd_fgs_gse", data={'x': time, 'y': data})
 ####################################################################################
 # We plot the data using the pyqtgraph library (the default). 
 # Another option is to plot using the bokeh library.
-tplot(['thd_fgs_gse', 'thd_fgs_gsm'])
+tplot(['thd_fgs_gse', 'thd_fgs_gsm'], bokeh=True)
 
 ####################################################################################
 # Load and plot MMS data
