@@ -25,8 +25,8 @@ urllib.request.urlretrieve(url, "./test_data.tplot")
 
 ##############################################################################
 # To load this data into pytplot, type in the following command:
-# pytplot.tplot_restore(r'test_data.tplot')
-# print(pytplot.tplot_names())
+pytplot.tplot_restore(r'test_data.tplot')
+print(pytplot.tplot_names())
 
 ##############################################################################
 # Storing data
@@ -56,7 +56,7 @@ urllib.request.urlretrieve(url, "./test_data.tplot")
 # When using any routines that require the name of the tplot variable, the user can use either
 # the name of the variable or the corresponding number.
 
-# pytplot.tplot_names()
+pytplot.tplot_names()
 
 ##############################################################################
 # Options
@@ -66,13 +66,13 @@ urllib.request.urlretrieve(url, "./test_data.tplot")
 # the pytplot documentation, but here are some examples to get you started.
 
 # Line Thickness
-# pytplot.options('swia_vel', 'thick', 4)
+pytplot.options('swia_vel', 'thick', 4)
 # Y-axis Label
-# pytplot.options('swia_vel', 'ytitle', 'speed (km/s)')
+pytplot.options('swia_vel', 'ytitle', 'speed (km/s)')
 # Vertical Plot Bounds
-# pytplot.options('SEP_1_ION', 'yrange', [5, 5000])
+pytplot.options('SEP_1_ION', 'yrange', [5, 5000])
 # Panel Size
-# pytplot.options(['mag', 'swia_den', 'swia_vel'], 'panel_size', 0.5)
+pytplot.options(['mag', 'swia_den', 'swia_vel'], 'panel_size', 0.5)
 
 ##############################################################################
 # Tplot Options
@@ -81,27 +81,27 @@ urllib.request.urlretrieve(url, "./test_data.tplot")
 # These control options affect all panels in a plot.
 
 # Title
-# pytplot.tplot_options('title', 'All Plots')
+pytplot.tplot_options('title', 'All Plots')
 # Window Size
-# pytplot.tplot_options('wsize', [800, 800])
+pytplot.tplot_options('wsize', [800, 800])
 
 # Adding a region of interest (ROI)
 # pytplot will add a ROI (indicated by two vertical red lines, with grey shading in between)
 # to all plot via specifying the 'roi' option
-# pytplot.tplot_options('roi', ['2016-06-20 11:12:24', '2016-06-20 14:12:00'])
+pytplot.tplot_options('roi', ['2016-06-20 11:12:24', '2016-06-20 14:12:00'])
 
 # Another option available in tplot_options is to specify the number of seconds with consecutive nan
 # values allowed before no interpolation should occur
-# pytplot.tplot_options('data_gap', 80)
+pytplot.tplot_options('data_gap', 80)
 
 ##############################################################################
 # Displaying data using tplot
 # ---------------------------
 # Single Panel Plot
-# pytplot.tplot('swia_vel')  # or, pytplot.tplot(6)
+pytplot.tplot('swia_vel')  # or, pytplot.tplot(6)
 
 # Multiple Panel Plot
-# pytplot.tplot(['swia_counts', 'swia_vel', 'mag'])  # or, pytplot.tplot([4,6,7])
+pytplot.tplot(['swia_counts', 'swia_vel', 'mag'])  # or, pytplot.tplot([4,6,7])
 
 ##############################################################################
 # Interacting with Data Plots
@@ -124,22 +124,22 @@ urllib.request.urlretrieve(url, "./test_data.tplot")
 # The Crosshairs Tool displays a set of crosshairs that follow the location of the mouse on the plot.
 # Crosshairs can be modified to be not displayed...
 
-# pytplot.tplot_options('crosshair', False)
-# pytplot.tplot('swia_counts')
+pytplot.tplot_options('crosshair', False)
+pytplot.tplot('swia_counts')
 
 # and crosshair names can be modified.
-# pytplot.tplot_options('crosshair', True)  # Just re-adding the crosshairs
-# pytplot.options('swia_counts', 'crosshair_x', 'XXX')
-# pytplot.options('swia_counts', 'crosshair_y', 'YYY')
-# pytplot.options('swia_counts', 'crosshair_z', 'ZZZ')
-# pytplot.tplot('swia_counts')
+pytplot.tplot_options('crosshair', True)  # Just re-adding the crosshairs
+pytplot.options('swia_counts', 'crosshair_x', 'XXX')
+pytplot.options('swia_counts', 'crosshair_y', 'YYY')
+pytplot.options('swia_counts', 'crosshair_z', 'ZZZ')
+pytplot.tplot('swia_counts')
 
 # Adding timebars
 # To place a vertical line at a specific time on all panels:
 # pytplot.timebar('2016-06-20 01:15:32', thick=3, color='green') will add a vertical black line to all plots
 # at the time entered. Further settings related to this routine are described in the pytplot documentation.
 
-# pytplot.timebar('2016-06-20 01:15:32', thick=3, color='green')
+pytplot.timebar('2016-06-20 01:15:32', thick=3, color='green')
 
 ##############################################################################
 # Interacting with spectrogram plots
@@ -155,14 +155,14 @@ urllib.request.urlretrieve(url, "./test_data.tplot")
 # You can also log axes in both the spectrogram plots ('xlog' and 'zlog' options),
 # and the interactive plots ('xlog_interactive' and 'ylog_interactive' options).
 
-# pytplot.options('swia_counts', 'ylog', 1)  # setting to 0 would make the y-axis linear
-# pytplot.options('swia_counts', 'zlog', 1)  # setting ot 0 would make the z-axis linear
-# pytplot.options('swia_counts', 'xlog_interactive', True)  # Setting to False would make the x-axis linear
-# pytplot.options('swia_counts', 'ylog_interactive', True)  # Setting to False would make the y-axis linear
-# pytplot.options('swia_counts', 'static_tavg', ['2016-06-20 12:00:00', '2016-06-20 13:00:00'])
-# pytplot.options('swia_counts', 'static', '2016-06-20 01:00:57')
-# pytplot.options('swia_counts', 't_average', 1200)
-# pytplot.tplot('swia_counts')
+pytplot.options('swia_counts', 'ylog', 1)  # setting to 0 would make the y-axis linear
+pytplot.options('swia_counts', 'zlog', 1)  # setting ot 0 would make the z-axis linear
+pytplot.options('swia_counts', 'xlog_interactive', True)  # Setting to False would make the x-axis linear
+pytplot.options('swia_counts', 'ylog_interactive', True)  # Setting to False would make the y-axis linear
+pytplot.options('swia_counts', 'static_tavg', ['2016-06-20 12:00:00', '2016-06-20 13:00:00'])
+pytplot.options('swia_counts', 'static', '2016-06-20 01:00:57')
+pytplot.options('swia_counts', 't_average', 1200)
+pytplot.tplot('swia_counts')
 
 ##############################################################################
 # Saving output
