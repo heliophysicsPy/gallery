@@ -27,6 +27,7 @@ jobs:
           name: Build documentation
           command: |
             echo "QT_QPA_PLATFORM: $QT_QPA_PLATFORM"
+            echo "QTDIR: $QTDIR"
             tox -e build_gallery
           environment:
             QT_DEBUG_PLUGINS: 1
