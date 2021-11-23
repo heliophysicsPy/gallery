@@ -73,6 +73,8 @@ store_data("new_thd_fgs_gse", data={'x': time, 'y': data})
 ####################################################################################
 # We plot the data using the pyqtgraph library (the default). 
 # Another option is to plot using the bokeh library.
+pytplot.options('thd_fgs_gse', 'color', 'red')
+pytplot.options('thd_fgs_gsm', 'color', 'blue')
 tplot(['thd_fgs_gse', 'thd_fgs_gsm'], bokeh=True)
 
 ####################################################################################
