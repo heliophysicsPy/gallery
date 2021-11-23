@@ -71,6 +71,7 @@ store_data("new_thd_fgs_gse", data={'x': time, 'y': data})
 ####################################################################################
 # We plot the data using the pyqtgraph library (the default). 
 # Another option is to plot using the bokeh library.
+os.putenv("XDG_RUNTIME_DIR", environment.Environment().getRootTempDir())
 tplot(['thd_fgs_gse', 'thd_fgs_gsm'])
 
 ####################################################################################
@@ -112,6 +113,8 @@ clean_spikes(['mms1_fgm_b_gse_brst_l2', 'mms1_fgm_b_gsm_brst_l2'])
 # options at: https://pytplot.readthedocs.io/en/latest/_modules/pytplot/options.html
 pytplot.options('mms1_fgm_b_gse_brst_l2-despike', 'color', 'red')
 pytplot.options('mms1_fgm_b_gsm_brst_l2-despike', 'color', 'blue')
+
+os.putenv("XDG_RUNTIME_DIR", environment.Environment().getRootTempDir())
 tplot(['mms1_fgm_b_gse_brst_l2-despike', 'mms1_fgm_b_gsm_brst_l2-despike'], bokeh=True)
 
 ####################################################################################
