@@ -85,8 +85,13 @@ time_range = ['2015-10-16/13:05:30', '2015-10-16/13:07:30']
 ####################################################################################
 # Load and plot two minutes of MMS burst mode FGM data:
 #
-# (Note that it prompts you for an SDC username before the download. 
-# You can submit a blank username.)
+# First we make an `mms_auth_info` pickle file with blank credentials 
+# in the home directory which skips a prompt that would ask for an
+# SDC username (a prompt that you could submit blank).
+import os
+import pickle
+pickle.dump({'user': '', 'passwd': ''}, open(os.sep.join([os.path.expanduser('~'), 'mms_auth_info.pkl']), 'wb'))
+
 mms_fgm = pyspedas.mms.fgm(trange=['2015-10-16/13:05:30', '2015-10-16/13:07:30'], data_rate='brst')
 
 ####################################################################################
