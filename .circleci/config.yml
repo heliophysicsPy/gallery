@@ -6,6 +6,17 @@ pip-run: &pip-install
   name: Install Python dependencies
   command: |
     sudo pip install tox
+    curl https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh -O
+    ls -l
+    chmod +x install.sh
+    ls -l
+    sudo bash install.sh
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+    sudo source /root/.bashrc
+    nvm install node
+    npm -v
 
 jobs:
   build:
@@ -25,17 +36,6 @@ jobs:
       - run:
           name: Build documentation
           command: |
-            curl https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh -O
-            ls -l
-            chmod +x install.sh
-            ls -l
-            sudo bash install.sh
-            export NVM_DIR="$HOME/.nvm"
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-            sudo source /root/.bashrc
-            nvm install node
-            npm -v
             tox -e build_gallery
           environment:
 
