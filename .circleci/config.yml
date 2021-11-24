@@ -27,7 +27,6 @@ jobs:
       - run:
           name: Build documentation
           command: |
-            node -v
             tox -e build_gallery
           environment:
 
