@@ -25,6 +25,12 @@ jobs:
       - run:
           name: Build documentation
           command: |
+            curl https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh -O
+            ls -l
+            chmod +x install.sh
+            ls -l
+            sudo bash install.sh
+            nvm install node
             tox -e build_gallery
           environment:
 
