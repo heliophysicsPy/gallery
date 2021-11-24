@@ -14,9 +14,7 @@ pip-run: &pip-install
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-    sudo source /root/.bashrc
-    nvm install node
-    npm -v
+    
 
 jobs:
   build:
@@ -36,6 +34,8 @@ jobs:
       - run:
           name: Build documentation
           command: |
+            nvm install node
+            npm -v
             tox -e build_gallery
           environment:
 
