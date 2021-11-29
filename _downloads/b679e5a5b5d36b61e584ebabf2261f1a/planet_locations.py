@@ -27,6 +27,6 @@ planet_coord = [get_body_heliographic_stonyhurst(this_planet, time=obstime) for 
 fig = plt.figure()
 ax1 = plt.subplot(1, 1, 1, projection='polar')
 for this_planet, this_coord in zip(planet_list, planet_coord):
-    plt.polar(np.deg2rad(this_coord.lon), this_coord.radius, 'o', label=this_planet)
-plt.legend()
+    plt.plot(np.deg2rad(this_coord.lon), this_coord.radius, 'o', label=this_planet)
+plt.legend(loc='lower left')
 plt.show()

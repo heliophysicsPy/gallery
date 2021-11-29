@@ -1,21 +1,25 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>PyTplot Demo &#8212; Python in Heliophysics Community (PyHC) Tutorials  documentation</title>
-    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/gallery.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>PyTplot Demo &#8212; PyHC Tutorials  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="prev" title="Astropy Coordinates and SunPy Demo" href="coordinates_demo.html" />
@@ -37,9 +41,10 @@
             
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-generated-gallery-pytplot-demo-py"><span class="std std-ref">here</span></a> to download the full example code or run this example in your browser via Binder</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-generated-gallery-pytplot-demo-py"><span class="std std-ref">here</span></a>
+to download the full example code or to run this example in your browser via Binder</p>
 </div>
-<div class="sphx-glr-example-title section" id="pytplot-demo">
+<section class="sphx-glr-example-title" id="pytplot-demo">
 <span id="sphx-glr-generated-gallery-pytplot-demo-py"></span><h1>PyTplot Demo<a class="headerlink" href="#pytplot-demo" title="Permalink to this headline">¶</a></h1>
 <p>Written by Julie Barnum and Elysia Lucas.
 The purpose of this demo is to show off some of the capabilities of PyTplot.</p>
@@ -48,16 +53,20 @@ The purpose of this demo is to show off some of the capabilities of PyTplot.</p>
 <span class="kn">import</span> <span class="nn">pytplot</span>
 </pre></div>
 </div>
-<div class="section" id="loading-data-into-memory">
+<section id="loading-data-into-memory">
 <h2>Loading data into memory<a class="headerlink" href="#loading-data-into-memory" title="Permalink to this headline">¶</a></h2>
 <p>The pytplot package comes with a sample IDL tplot save file which will be used for the following tutorial,
 located in PyTplot Github (<a class="reference external" href="https://github.com/MAVENSDC/PyTplot">https://github.com/MAVENSDC/PyTplot</a>) under pytplot/pytplot/sampledata.
 This file was generated in IDL, and therefore can be loaded into tplot if you wish to compare the
 IDL and python versions.
 Download the test file from the PyTplot Github acct</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/MAVENSDC/PyTplot/raw/master/docs/test_data.tplot&#39;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">url</span></a></a></a> <span class="o">=</span> <span class="s1">&#39;https://github.com/MAVENSDC/PyTplot/raw/master/docs/test_data.tplot&#39;</span>
 
-<span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;./test_data.tplot&quot;</span><span class="p">)</span>
+<a href="https://docs.python.org/3/library/urllib.request.html#urllib.request.urlretrieve" title="urllib.request.urlretrieve" class="sphx-glr-backref-module-urllib-request sphx-glr-backref-type-py-function"><a href="https://docs.python.org/3/library/urllib.request.html#urllib.request.urlretrieve" title="urllib.request.urlretrieve" class="sphx-glr-backref-module-urllib-request sphx-glr-backref-type-py-function"><a href="https://docs.python.org/3/library/urllib.request.html#urllib.request.urlretrieve" title="urllib.request.urlretrieve" class="sphx-glr-backref-module-urllib-request sphx-glr-backref-type-py-function"><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span></a></a></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">url</span></a></a></a><span class="p">,</span> <span class="s2">&quot;./test_data.tplot&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>(&#39;./test_data.tplot&#39;, &lt;http.client.HTTPMessage object at 0x13697c130&gt;)
 </pre></div>
 </div>
 <p>To load this data into pytplot, type in the following command:</p>
@@ -66,25 +75,19 @@ Download the test file from the PyTplot Github acct</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>0 : thg_mag_ccnv
-1 : thg_mag_ptrs
-2 : thg_mag_ukia
-3 : thg_idx_al
-4 : thg_idx_au
-5 : thg_idx_ae
-6 : SEP_2_ELEC
-7 : SEP_1_ION
-8 : SEP_2_ION
-9 : swia_counts
-10 : swia_den
-11 : swia_vel
-12 : mag
-13 : orbit
-[&#39;thg_mag_ccnv&#39;, &#39;thg_mag_ptrs&#39;, &#39;thg_mag_ukia&#39;, &#39;thg_idx_al&#39;, &#39;thg_idx_au&#39;, &#39;thg_idx_ae&#39;, &#39;SEP_2_ELEC&#39;, &#39;SEP_1_ION&#39;, &#39;SEP_2_ION&#39;, &#39;swia_counts&#39;, &#39;swia_den&#39;, &#39;swia_vel&#39;, &#39;mag&#39;, &#39;orbit&#39;]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>0 : SEP_2_ELEC
+1 : SEP_1_ION
+2 : SEP_2_ION
+3 : swia_counts
+4 : swia_den
+5 : swia_vel
+6 : mag
+7 : orbit
+[&#39;SEP_2_ELEC&#39;, &#39;SEP_1_ION&#39;, &#39;SEP_2_ION&#39;, &#39;swia_counts&#39;, &#39;swia_den&#39;, &#39;swia_vel&#39;, &#39;mag&#39;, &#39;orbit&#39;]
 </pre></div>
 </div>
-</div>
-<div class="section" id="storing-data">
+</section>
+<section id="storing-data">
 <h2>Storing data<a class="headerlink" href="#storing-data" title="Permalink to this headline">¶</a></h2>
 <p>pytplot works by interacting with global variables (called tplot variables) that contain information necessary for
 creating one panel (or even one portion of a panel) of a plot, that can be accessed from the main level or
@@ -103,8 +106,8 @@ that correspond to those latitude/longitude points
 Combining Two Plots: store_data(‘new_name’, [‘old_name1’, ‘old_name2’])
 to combine multiple existing tplot variables (‘old_name1’ and ‘old_name2’) into one new tplot variable
 (‘new_name’). ‘new_name’ will have all data from the existing tplot variables entered in one new tplot variable.</p>
-</div>
-<div class="section" id="pytplot-variables">
+</section>
+<section id="pytplot-variables">
 <h2>Pytplot variables<a class="headerlink" href="#pytplot-variables" title="Permalink to this headline">¶</a></h2>
 <p>pytplot.tplot_names() will print the numbers and names of the tplot variables currently in memory.
 When using any routines that require the name of the tplot variable, the user can use either
@@ -113,24 +116,20 @@ the name of the variable or the corresponding number.</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>0 : thg_mag_ccnv
-1 : thg_mag_ptrs
-2 : thg_mag_ukia
-3 : thg_idx_al
-4 : thg_idx_au
-5 : thg_idx_ae
-6 : SEP_2_ELEC
-7 : SEP_1_ION
-8 : SEP_2_ION
-9 : swia_counts
-10 : swia_den
-11 : swia_vel
-12 : mag
-13 : orbit
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>0 : SEP_2_ELEC
+1 : SEP_1_ION
+2 : SEP_2_ION
+3 : swia_counts
+4 : swia_den
+5 : swia_vel
+6 : mag
+7 : orbit
+
+[&#39;SEP_2_ELEC&#39;, &#39;SEP_1_ION&#39;, &#39;SEP_2_ION&#39;, &#39;swia_counts&#39;, &#39;swia_den&#39;, &#39;swia_vel&#39;, &#39;mag&#39;, &#39;orbit&#39;]
 </pre></div>
 </div>
-</div>
-<div class="section" id="options">
+</section>
+<section id="options">
 <h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <p>pytplot.options(‘tplot_var’, ‘option’, ‘option_value’) can be used to change plotting options
 corresponding to specific tplot variables. All options currently implemented are described in
@@ -145,8 +144,8 @@ the pytplot documentation, but here are some examples to get you started.</p>
 <span class="n">pytplot</span><span class="o">.</span><span class="n">options</span><span class="p">([</span><span class="s1">&#39;mag&#39;</span><span class="p">,</span> <span class="s1">&#39;swia_den&#39;</span><span class="p">,</span> <span class="s1">&#39;swia_vel&#39;</span><span class="p">],</span> <span class="s1">&#39;panel_size&#39;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="tplot-options">
+</section>
+<section id="tplot-options">
 <h2>Tplot Options<a class="headerlink" href="#tplot-options" title="Permalink to this headline">¶</a></h2>
 <p>pytplot.tplot_options(‘option’, ‘option_value’) can be used to change plotting options for the tplot routine.
 These control options affect all panels in a plot.</p>
@@ -165,8 +164,8 @@ These control options affect all panels in a plot.</p>
 <span class="n">pytplot</span><span class="o">.</span><span class="n">tplot_options</span><span class="p">(</span><span class="s1">&#39;data_gap&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="displaying-data-using-tplot">
+</section>
+<section id="displaying-data-using-tplot">
 <h2>Displaying data using tplot<a class="headerlink" href="#displaying-data-using-tplot" title="Permalink to this headline">¶</a></h2>
 <p>Single Panel Plot</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pytplot</span><span class="o">.</span><span class="n">tplot</span><span class="p">(</span><span class="s1">&#39;swia_vel&#39;</span><span class="p">)</span>  <span class="c1"># or, pytplot.tplot(6)</span>
@@ -175,13 +174,8 @@ These control options affect all panels in a plot.</p>
 <span class="n">pytplot</span><span class="o">.</span><span class="n">tplot</span><span class="p">([</span><span class="s1">&#39;swia_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;swia_vel&#39;</span><span class="p">,</span> <span class="s1">&#39;mag&#39;</span><span class="p">])</span>  <span class="c1"># or, pytplot.tplot([4,6,7])</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Qt was not successfully imported.  Specify save_file to save the file as a .html file.
-Qt was not successfully imported.  Specify save_file to save the file as a .html file.
-</pre></div>
-</div>
-</div>
-<div class="section" id="interacting-with-data-plots">
+</section>
+<section id="interacting-with-data-plots">
 <h2>Interacting with Data Plots<a class="headerlink" href="#interacting-with-data-plots" title="Permalink to this headline">¶</a></h2>
 <p>There are several ways to interact with the data plots. There is command line interaction
 that follows the same pattern of functions IDL utilizes. Pytplot additionally has interactivity
@@ -199,7 +193,6 @@ built into the viewing window in the form of “tools”.</p>
 <span class="c1"># Add crosshairs to plot window</span>
 <span class="c1"># The Crosshairs Tool displays a set of crosshairs that follow the location of the mouse on the plot.</span>
 <span class="c1"># Crosshairs can be modified to be not displayed...</span>
-
 <span class="n">pytplot</span><span class="o">.</span><span class="n">tplot_options</span><span class="p">(</span><span class="s1">&#39;crosshair&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 <span class="n">pytplot</span><span class="o">.</span><span class="n">tplot</span><span class="p">(</span><span class="s1">&#39;swia_counts&#39;</span><span class="p">)</span>
 
@@ -214,17 +207,11 @@ built into the viewing window in the form of “tools”.</p>
 <span class="c1"># To place a vertical line at a specific time on all panels:</span>
 <span class="c1"># pytplot.timebar(&#39;2016-06-20 01:15:32&#39;, thick=3, color=&#39;green&#39;) will add a vertical black line to all plots</span>
 <span class="c1"># at the time entered. Further settings related to this routine are described in the pytplot documentation.</span>
-
 <span class="n">pytplot</span><span class="o">.</span><span class="n">timebar</span><span class="p">(</span><span class="s1">&#39;2016-06-20 01:15:32&#39;</span><span class="p">,</span> <span class="n">thick</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Qt was not successfully imported.  Specify save_file to save the file as a .html file.
-Qt was not successfully imported.  Specify save_file to save the file as a .html file.
-</pre></div>
-</div>
-</div>
-<div class="section" id="interacting-with-spectrogram-plots">
+</section>
+<section id="interacting-with-spectrogram-plots">
 <h2>Interacting with spectrogram plots<a class="headerlink" href="#interacting-with-spectrogram-plots" title="Permalink to this headline">¶</a></h2>
 <p>pytplot also has the ability to interact directly with spectrograms.
 If you supply the interactive=True keyword to a pytplot.tplot command,
@@ -246,37 +233,33 @@ and the interactive plots (‘xlog_interactive’ and ‘ylog_interactive’ opt
 <span class="n">pytplot</span><span class="o">.</span><span class="n">tplot</span><span class="p">(</span><span class="s1">&#39;swia_counts&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Qt was not successfully imported.  Specify save_file to save the file as a .html file.
-</pre></div>
-</div>
-</div>
-<div class="section" id="saving-output">
+</section>
+<section id="saving-output">
 <h2>Saving output<a class="headerlink" href="#saving-output" title="Permalink to this headline">¶</a></h2>
 <p>pytplot plots have the ability to be saved via ‘Save PNG’ option from the plot window, or you can specify
 that you want to save a plot ahead of time via the ‘save_png’ option
 (e.g., pytplot.tplot(‘swia_counts’, save_png = ‘/path/to/png/PNG.png’)</p>
-</div>
-<div class="section" id="displaying-in-bokeh">
+</section>
+<section id="displaying-in-bokeh">
 <h2>Displaying in bokeh<a class="headerlink" href="#displaying-in-bokeh" title="Permalink to this headline">¶</a></h2>
 <p>pytplot allows you to use bokeh for visualizing data (bokeh is a Python library that allows interactive plots
 to be visualized via a web browser window), via the ‘bokeh’ option
 (e.g., pytplot.tplot(‘swia_counts’, bokeh=True)</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.940 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  13.554 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-gallery-pytplot-demo-py">
 <div class="binder-badge docutils container">
-<a class="reference external image-reference" href="https://mybinder.org/v2/gh/HeliophysicsPy/gallery/gh-pages?urlpath=lab/tree/notebooks/generated/gallery/pytplot_demo.ipynb"><img alt="https://mybinder.org/badge_logo.svg" src="https://mybinder.org/badge_logo.svg" width="150px" /></a>
+<a class="reference external image-reference" href="https://mybinder.org/v2/gh/HeliophysicsPy/gallery/gh-pages?urlpath=lab/tree/notebooks/generated/gallery/pytplot_demo.ipynb"><img alt="Launch binder" src="../../_images/binder_badge_logo.svg" width="150px" /></a>
 </div>
-<div class="sphx-glr-download docutils container">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/77ea36832716a7554aaadcd04cc4bbb3/pytplot_demo.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">pytplot_demo.py</span></code></a></p>
 </div>
-<div class="sphx-glr-download docutils container">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/f898022418c9bae8e8326204157f033f/pytplot_demo.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">pytplot_demo.ipynb</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -285,7 +268,7 @@ to be visualized via a web browser window), via the ‘bokeh’ option
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../index.html">Python in Heliophysics Community (PyHC) Tutorials</a></h1>
+<h1 class="logo"><a href="../../index.html">PyHC Tutorials</a></h1>
 
 
 
@@ -298,8 +281,8 @@ to be visualized via a web browser window), via the ‘bokeh’ option
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Python in Heliophysics Community Gallery</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="planet_locations.html">Planet Positions in the Solar System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyspedas_demo.html">pyspedas Demo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="units_demo.html">Quantities, Units, and Constants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyspedas_demo.html">pyspedas Demo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="coordinates_demo.html">Astropy Coordinates and SunPy Demo</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">PyTplot Demo</a></li>
 </ul>
@@ -320,12 +303,12 @@ to be visualized via a web browser window), via the ‘bokeh’ option
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 
 
 
@@ -339,10 +322,10 @@ to be visualized via a web browser window), via the ‘bokeh’ option
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018, PyHC.
+      &copy;2021, PyHC.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
