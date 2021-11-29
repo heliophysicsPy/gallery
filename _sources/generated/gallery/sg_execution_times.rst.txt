@@ -5,10 +5,16 @@
 
 Computation times
 =================
-**00:49.405** total execution time for **generated_gallery** files:
+**00:47.418** total execution time for **generated_gallery** files:
 
-- **00:33.626**: :ref:`sphx_glr_generated_gallery_coordinates_demo.py` (``coordinates_demo.py``)
-- **00:13.971**: :ref:`sphx_glr_generated_gallery_pyspedas_demo.py` (``pyspedas_demo.py``)
-- **00:00.940**: :ref:`sphx_glr_generated_gallery_pytplot_demo.py` (``pytplot_demo.py``)
-- **00:00.793**: :ref:`sphx_glr_generated_gallery_planet_locations.py` (``planet_locations.py``)
-- **00:00.076**: :ref:`sphx_glr_generated_gallery_units_demo.py` (``units_demo.py``)
++---------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_generated_gallery_pyspedas_demo.py` (``pyspedas_demo.py``)       | 00:47.418 | 0.0 MB |
++---------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_generated_gallery_coordinates_demo.py` (``coordinates_demo.py``) | 00:00.000 | 0.0 MB |
++---------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_generated_gallery_planet_locations.py` (``planet_locations.py``) | 00:00.000 | 0.0 MB |
++---------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_generated_gallery_pytplot_demo.py` (``pytplot_demo.py``)         | 00:00.000 | 0.0 MB |
++---------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_generated_gallery_units_demo.py` (``units_demo.py``)             | 00:00.000 | 0.0 MB |
++---------------------------------------------------------------------------------+-----------+--------+

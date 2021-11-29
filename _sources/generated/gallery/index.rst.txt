@@ -8,6 +8,8 @@
 Python in Heliophysics Community Gallery
 ========================================
 
+`Back to the Main Site <https://heliopython.org>`_
+
 A collection of examples and tutorials for using Python for Heliophysics. 
 New examples can be added by following the guide in the `README <https://github.com/heliophysicsPy/gallery/blob/master/README.md>`_.
 
@@ -21,9 +23,10 @@ Links to project-specific galleries: `SunPy <http://docs.sunpy.org/en/stable/gen
 
 .. only:: html
 
-    .. figure:: /generated/gallery/images/thumb/sphx_glr_planet_locations_thumb.png
+ .. figure:: /generated/gallery/images/thumb/sphx_glr_planet_locations_thumb.png
+     :alt: Planet Positions in the Solar System
 
-        :ref:`sphx_glr_generated_gallery_planet_locations.py`
+     :ref:`sphx_glr_generated_gallery_planet_locations.py`
 
 .. raw:: html
 
@@ -37,33 +40,14 @@ Links to project-specific galleries: `SunPy <http://docs.sunpy.org/en/stable/gen
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Written by Nick Hatzigeorgiu. ">
-
-.. only:: html
-
-    .. figure:: /generated/gallery/images/thumb/sphx_glr_pyspedas_demo_thumb.png
-
-        :ref:`sphx_glr_generated_gallery_pyspedas_demo.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /generated/gallery/pyspedas_demo
-
-.. raw:: html
-
     <div class="sphx-glr-thumbcontainer" tooltip="The purpose of this demo is to demonstrate the capabilities of astropy ~astropy.units.Unit, ~as...">
 
 .. only:: html
 
-    .. figure:: /generated/gallery/images/thumb/sphx_glr_units_demo_thumb.png
+ .. figure:: /generated/gallery/images/thumb/sphx_glr_units_demo_thumb.png
+     :alt: Quantities, Units, and Constants
 
-        :ref:`sphx_glr_generated_gallery_units_demo.py`
+     :ref:`sphx_glr_generated_gallery_units_demo.py`
 
 .. raw:: html
 
@@ -77,13 +61,35 @@ Links to project-specific galleries: `SunPy <http://docs.sunpy.org/en/stable/gen
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Written by Nick Hatzigeorgiu and Shawn Polson. ">
+
+.. only:: html
+
+ .. figure:: /generated/gallery/images/thumb/sphx_glr_pyspedas_demo_thumb.png
+     :alt: pySPEDAS Demo
+
+     :ref:`sphx_glr_generated_gallery_pyspedas_demo.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /generated/gallery/pyspedas_demo
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="Written by Steven Christe and presented at the Heliopython meeting on November 13-15, 2018. The...">
 
 .. only:: html
 
-    .. figure:: /generated/gallery/images/thumb/sphx_glr_coordinates_demo_thumb.png
+ .. figure:: /generated/gallery/images/thumb/sphx_glr_coordinates_demo_thumb.png
+     :alt: Astropy Coordinates and SunPy Demo
 
-        :ref:`sphx_glr_generated_gallery_coordinates_demo.py`
+     :ref:`sphx_glr_generated_gallery_coordinates_demo.py`
 
 .. raw:: html
 
@@ -101,9 +107,10 @@ Links to project-specific galleries: `SunPy <http://docs.sunpy.org/en/stable/gen
 
 .. only:: html
 
-    .. figure:: /generated/gallery/images/thumb/sphx_glr_pytplot_demo_thumb.png
+ .. figure:: /generated/gallery/images/thumb/sphx_glr_pytplot_demo_thumb.png
+     :alt: PyTplot Demo
 
-        :ref:`sphx_glr_generated_gallery_pytplot_demo.py`
+     :ref:`sphx_glr_generated_gallery_pytplot_demo.py`
 
 .. raw:: html
 
@@ -116,7 +123,7 @@ Links to project-specific galleries: `SunPy <http://docs.sunpy.org/en/stable/gen
    /generated/gallery/pytplot_demo
 .. raw:: html
 
-    <div style='clear:both'></div>
+    <div class="sphx-glr-clear"></div>
 
 
 
@@ -126,15 +133,15 @@ Links to project-specific galleries: `SunPy <http://docs.sunpy.org/en/stable/gen
     :class: sphx-glr-footer-gallery
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-python
 
-    :download:`Download all examples in Python source code: gallery_python.zip <//home/circleci/project/generated/gallery/gallery_python.zip>`
+    :download:`Download all examples in Python source code: gallery_python.zip </generated/gallery/gallery_python.zip>`
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-    :download:`Download all examples in Jupyter notebooks: gallery_jupyter.zip <//home/circleci/project/generated/gallery/gallery_jupyter.zip>`
+    :download:`Download all examples in Jupyter notebooks: gallery_jupyter.zip </generated/gallery/gallery_jupyter.zip>`
 
 
 .. only:: html
