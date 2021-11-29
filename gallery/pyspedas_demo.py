@@ -1,12 +1,12 @@
 # coding: utf-8
 """
 ====================================
-pyspedas Demo
+pySPEDAS Demo
 ====================================
 
 Written by Nick Hatzigeorgiu and Shawn Polson. 
 
-The purpose of this demo is to demonstrate some of the capabilities of the pyspedas package.
+The purpose of this demo is to demonstrate some of the capabilities of the pySPEDAS package.
 """
 
 ####################################################################################
