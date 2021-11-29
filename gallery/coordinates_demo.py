@@ -63,7 +63,7 @@ crab_altaz = crab.transform_to(AltAz(obstime=midnight,location=dkist))
 print(crab_altaz)
 print("Crab's Altitude = {0.alt:}".format(crab_altaz))
 
-# #############################################################################
+##############################################################################
 # Let's now move on to showing how SunPy extends AstroPy coordinates by
 # adding solar coordinate systems.
 from sunpy.coordinates import frames
