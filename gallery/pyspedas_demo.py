@@ -92,7 +92,8 @@ time_range = ['2015-10-16/13:05:30', '2015-10-16/13:07:30']
 # First we make an `mms_auth_info` pickle file with blank credentials 
 # in the home directory—this skips a prompt that would ask for an
 # SDC username (a prompt that you could just submit blank).
-pickle.dump({'user': '', 'passwd': ''}, open(os.sep.join([os.path.expanduser('~'), 'mms_auth_info.pkl']), 'wb'))
+with open(os.sep.join([os.path.expanduser('~'), 'mms_auth_info.pkl']), 'wb') as auth_file:
+    pickle.dump({'user': '', 'passwd': ''}, auth_file)
 
 mms_fgm = pyspedas.mms.fgm(trange=['2015-10-16/13:05:30', '2015-10-16/13:07:30'], data_rate='brst')
 
