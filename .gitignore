@@ -1,3 +1,5 @@
 .tox/
 generated/
 _build/
+gallery/pydata/
+gallery/themis_data/
