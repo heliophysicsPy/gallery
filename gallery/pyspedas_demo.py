@@ -75,7 +75,7 @@ store_data("new_thd_fgs_gse", data={'x': time, 'y': data})
 # Another option is to plot using the bokeh library.
 pytplot.options('thd_fgs_gse', 'color', 'red')
 pytplot.options('thd_fgs_gsm', 'color', 'blue')
-tplot(['thd_fgs_gse', 'thd_fgs_gsm'], bokeh=True)
+# tplot(['thd_fgs_gse', 'thd_fgs_gsm'])
 
 ####################################################################################
 # Load and plot MMS data
