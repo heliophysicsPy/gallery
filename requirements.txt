@@ -3,3 +3,4 @@ astropy
 sunpy
 pytplot
 pyspedas
+aiapy
