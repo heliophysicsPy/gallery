@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Downloading and Compressing a FITS file using SunPy, aiapy, and Astropy &#8212; PyHC Tutorials  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pySPEDAS Demo" href="pyspedas_demo.html" />
+    <link rel="prev" title="Quantities, Units, and Constants" href="units_demo.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-generated-gallery-retrieve-compress-py"><span class="std std-ref">here</span></a>
+to download the full example code or to run this example in your browser via Binder</p>
+</div>
+<section class="sphx-glr-example-title" id="downloading-and-compressing-a-fits-file-using-sunpy-aiapy-and-astropy">
+<span id="sphx-glr-generated-gallery-retrieve-compress-py"></span><h1>Downloading and Compressing a FITS file using SunPy, aiapy, and Astropy<a class="headerlink" href="#downloading-and-compressing-a-fits-file-using-sunpy-aiapy-and-astropy" title="Permalink to this headline">¶</a></h1>
+<p>Written by Matt Wentzel-Long. The purpose of this demo is to demonstrate:
+1) SunPy’s ability to retrieve a Level 1 AIA data, 2) convert this to Level
+1.5 AIA data using aiapy, 3) deconvolve the FITS file using aiapy, and 4)
+demonstrate the compression ability of Astropy when saving the file.</p>
+<p>First import the packages</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">astropy</span>
+<span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
+<span class="kn">from</span> <span class="nn">astropy.io.fits</span> <span class="kn">import</span> <a href="https://docs.astropy.org/en/stable/io/fits/api/images.html#astropy.io.fits.CompImageHDU" title="astropy.io.fits.CompImageHDU" class="sphx-glr-backref-module-astropy-io-fits sphx-glr-backref-type-py-class"><span class="n">CompImageHDU</span></a>
+
+<span class="kn">from</span> <span class="nn">sunpy.net</span> <span class="kn">import</span> <span class="n">Fido</span><span class="p">,</span> <span class="n">attrs</span> <span class="k">as</span> <span class="n">a</span>
+<span class="kn">import</span> <span class="nn">sunpy.map</span>
+
+<span class="kn">import</span> <span class="nn">aiapy.psf</span> <span class="k">as</span> <span class="nn">psf_</span>
+<span class="kn">from</span> <span class="nn">aiapy.calibrate</span> <span class="kn">import</span> <span class="n">register</span><span class="p">,</span> <span class="n">update_pointing</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+</pre></div>
+</div>
+<p>Use the SunPy tool <a class="reference external" href="https://docs.sunpy.org/en/v3.0.1/guide/acquiring_data/fido.html">Fido</a> to find and download level 1 AIA data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.sunpy.org/en/stable/api/sunpy.net.fido_factory.UnifiedResponse.html#sunpy.net.fido_factory.UnifiedResponse" title="sunpy.net.fido_factory.UnifiedResponse" class="sphx-glr-backref-module-sunpy-net-fido_factory sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">q</span></a> <span class="o">=</span> <a href="https://docs.sunpy.org/en/stable/api/sunpy.net.fido_factory.UnifiedDownloaderFactory.html#sunpy.net.fido_factory.UnifiedDownloaderFactory.search" title="sunpy.net.fido_factory.UnifiedDownloaderFactory.search" class="sphx-glr-backref-module-sunpy-net-fido_factory sphx-glr-backref-type-py-method"><span class="n">Fido</span><span class="o">.</span><span class="n">search</span></a><span class="p">(</span><a href="https://docs.sunpy.org/en/stable/api/sunpy.net.attrs.Time.html#sunpy.net.attrs.Time" title="sunpy.net.attrs.Time" class="sphx-glr-backref-module-sunpy-net-attrs sphx-glr-backref-type-py-class"><span class="n">a</span><span class="o">.</span><span class="n">Time</span></a><span class="p">(</span><span class="s1">&#39;2011-06-07T06:52:00&#39;</span><span class="p">,</span> <span class="s1">&#39;2011-06-07T06:52:10&#39;</span><span class="p">),</span>
+                <a href="https://docs.sunpy.org/en/stable/api/sunpy.net.attrs.Instrument.html#sunpy.net.attrs.Instrument" title="sunpy.net.attrs.Instrument" class="sphx-glr-backref-module-sunpy-net-attrs sphx-glr-backref-type-py-class"><span class="n">a</span><span class="o">.</span><span class="n">Instrument</span></a><span class="p">(</span><span class="s1">&#39;AIA&#39;</span><span class="p">),</span>
+                <a href="https://docs.sunpy.org/en/stable/api/sunpy.net.attrs.Wavelength.html#sunpy.net.attrs.Wavelength" title="sunpy.net.attrs.Wavelength" class="sphx-glr-backref-module-sunpy-net-attrs sphx-glr-backref-type-py-class"><span class="n">a</span><span class="o">.</span><span class="n">Wavelength</span></a><span class="p">(</span><span class="n">wavemin</span><span class="o">=</span><span class="mi">171</span><span class="o">*</span><a href="https://docs.astropy.org/en/stable/api/astropy.units.Unit.html#astropy.units.Unit" title="astropy.units.Unit" class="sphx-glr-backref-module-astropy-units sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">u</span><span class="o">.</span><span class="n">angstrom</span></a><span class="p">,</span> <span class="n">wavemax</span><span class="o">=</span><span class="mi">171</span><span class="o">*</span><a href="https://docs.astropy.org/en/stable/api/astropy.units.Unit.html#astropy.units.Unit" title="astropy.units.Unit" class="sphx-glr-backref-module-astropy-units sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">u</span><span class="o">.</span><span class="n">angstrom</span></a><span class="p">))</span>
+<a href="https://docs.sunpy.org/en/stable/api/sunpy.map.sources.AIAMap.html#sunpy.map.sources.AIAMap" title="sunpy.map.sources.AIAMap" class="sphx-glr-backref-module-sunpy-map-sources sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">aia_map</span></a> <span class="o">=</span> <a href="https://docs.sunpy.org/en/stable/code_ref/map.html#sunpy.map.map_factory.MapFactory" title="sunpy.map.map_factory.MapFactory" class="sphx-glr-backref-module-sunpy-map-map_factory sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sunpy</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">Map</span></a><span class="p">(</span><a href="https://docs.sunpy.org/en/stable/api/sunpy.net.fido_factory.UnifiedDownloaderFactory.html#sunpy.net.fido_factory.UnifiedDownloaderFactory.fetch" title="sunpy.net.fido_factory.UnifiedDownloaderFactory.fetch" class="sphx-glr-backref-module-sunpy-net-fido_factory sphx-glr-backref-type-py-method"><span class="n">Fido</span><span class="o">.</span><span class="n">fetch</span></a><span class="p">(</span><a href="https://docs.sunpy.org/en/stable/api/sunpy.net.fido_factory.UnifiedResponse.html#sunpy.net.fido_factory.UnifiedResponse" title="sunpy.net.fido_factory.UnifiedResponse" class="sphx-glr-backref-module-sunpy-net-fido_factory sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">q</span></a><span class="p">))</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Files Downloaded:   0%|          | 0/1 [00:00&lt;?, ?file/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:   0%|          | 0.00/12.3M [00:00&lt;?, ?B/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:   0%|          | 100/12.3M [00:02&lt;90:54:50, 37.5B/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:   0%|          | 34.1k/12.3M [00:02&lt;12:16, 16.6kB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:   1%|          | 104k/12.3M [00:02&lt;03:20, 60.8kB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:   2%|1         | 218k/12.3M [00:03&lt;01:18, 153kB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:   2%|2         | 287k/12.3M [00:03&lt;01:02, 191kB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:   7%|6         | 836k/12.3M [00:03&lt;00:13, 843kB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:   9%|8         | 1.06M/12.3M [00:03&lt;00:10, 1.05MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  10%|#         | 1.28M/12.3M [00:03&lt;00:08, 1.25MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  12%|#2        | 1.50M/12.3M [00:03&lt;00:07, 1.44MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  14%|#4        | 1.73M/12.3M [00:03&lt;00:06, 1.62MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  16%|#5        | 1.95M/12.3M [00:03&lt;00:05, 1.77MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  18%|#7        | 2.18M/12.3M [00:03&lt;00:05, 1.90MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  20%|#9        | 2.42M/12.3M [00:04&lt;00:04, 2.01MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  22%|##1       | 2.67M/12.3M [00:04&lt;00:04, 2.14MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  24%|##3       | 2.90M/12.3M [00:04&lt;00:04, 2.19MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  26%|##5       | 3.16M/12.3M [00:04&lt;00:03, 2.29MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  28%|##7       | 3.41M/12.3M [00:04&lt;00:03, 2.36MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  30%|##9       | 3.66M/12.3M [00:04&lt;00:03, 2.40MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  32%|###1      | 3.91M/12.3M [00:04&lt;00:03, 2.42MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  34%|###3      | 4.16M/12.3M [00:04&lt;00:03, 2.46MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  36%|###6      | 4.43M/12.3M [00:04&lt;00:03, 2.52MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  38%|###8      | 4.68M/12.3M [00:04&lt;00:03, 2.51MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  40%|####      | 4.94M/12.3M [00:05&lt;00:02, 2.54MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  42%|####2     | 5.21M/12.3M [00:05&lt;00:02, 2.56MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  44%|####4     | 5.46M/12.3M [00:05&lt;00:02, 2.56MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  47%|####6     | 5.75M/12.3M [00:05&lt;00:02, 2.64MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  49%|####8     | 6.01M/12.3M [00:05&lt;00:03, 1.98MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  52%|#####2    | 6.44M/12.3M [00:05&lt;00:02, 2.42MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  55%|#####4    | 6.71M/12.3M [00:05&lt;00:02, 2.08MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  56%|#####6    | 6.94M/12.3M [00:05&lt;00:02, 2.00MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  58%|#####8    | 7.15M/12.3M [00:06&lt;00:02, 1.96MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  60%|#####9    | 7.35M/12.3M [00:06&lt;00:02, 1.65MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  61%|######1   | 7.53M/12.3M [00:06&lt;00:02, 1.66MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  63%|######2   | 7.71M/12.3M [00:06&lt;00:02, 1.66MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  64%|######4   | 7.88M/12.3M [00:06&lt;00:02, 1.51MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  65%|######5   | 8.03M/12.3M [00:06&lt;00:02, 1.52MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  67%|######6   | 8.19M/12.3M [00:06&lt;00:02, 1.53MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  68%|######7   | 8.35M/12.3M [00:06&lt;00:02, 1.54MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  69%|######9   | 8.51M/12.3M [00:07&lt;00:02, 1.56MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  71%|#######   | 8.67M/12.3M [00:07&lt;00:02, 1.57MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  72%|#######1  | 8.83M/12.3M [00:07&lt;00:02, 1.57MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  73%|#######3  | 8.99M/12.3M [00:07&lt;00:02, 1.57MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  75%|#######4  | 9.15M/12.3M [00:07&lt;00:01, 1.61MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  76%|#######5  | 9.32M/12.3M [00:07&lt;00:01, 1.61MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  77%|#######7  | 9.48M/12.3M [00:07&lt;00:01, 1.62MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  79%|#######8  | 9.64M/12.3M [00:07&lt;00:01, 1.62MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  80%|#######9  | 9.81M/12.3M [00:07&lt;00:01, 1.64MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  81%|########1 | 9.98M/12.3M [00:07&lt;00:01, 1.61MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  83%|########2 | 10.2M/12.3M [00:08&lt;00:01, 1.68MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  84%|########4 | 10.3M/12.3M [00:08&lt;00:01, 1.68MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  85%|########5 | 10.5M/12.3M [00:08&lt;00:01, 1.68MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  87%|########6 | 10.7M/12.3M [00:08&lt;00:00, 1.64MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  88%|########8 | 10.8M/12.3M [00:08&lt;00:00, 1.67MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  90%|########9 | 11.0M/12.3M [00:08&lt;00:00, 1.56MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  91%|#########1| 11.2M/12.3M [00:08&lt;00:00, 1.59MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  92%|#########2| 11.3M/12.3M [00:08&lt;00:00, 1.61MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  94%|#########3| 11.5M/12.3M [00:08&lt;00:00, 1.61MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  95%|#########5| 11.7M/12.3M [00:08&lt;00:00, 1.64MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  96%|#########6| 11.8M/12.3M [00:09&lt;00:00, 1.64MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  98%|#########7| 12.0M/12.3M [00:09&lt;00:00, 1.65MB/s]
+
+aia_lev1_171a_2011_06_07t06_52_00_35z_image_lev1.fits:  99%|#########9| 12.2M/12.3M [00:09&lt;00:00, 1.65MB/s]
+
+
+Files Downloaded: 100%|##########| 1/1 [00:21&lt;00:00, 21.31s/file]
+Files Downloaded: 100%|##########| 1/1 [00:21&lt;00:00, 21.31s/file]
+</pre></div>
+</div>
+<p>Convert to level 1.5 AIA data. See the <a class="reference external" href="https://aiapy.readthedocs.io/en/latest/generated/gallery/prepping_level_1_data.html">registering and aligning level 1 data</a>
+example in aiapy documentation for more details.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.sunpy.org/en/stable/api/sunpy.map.sources.AIAMap.html#sunpy.map.sources.AIAMap" title="sunpy.map.sources.AIAMap" class="sphx-glr-backref-module-sunpy-map-sources sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">m_updated_pointing</span></a> <span class="o">=</span> <span class="n">update_pointing</span><span class="p">(</span><a href="https://docs.sunpy.org/en/stable/api/sunpy.map.sources.AIAMap.html#sunpy.map.sources.AIAMap" title="sunpy.map.sources.AIAMap" class="sphx-glr-backref-module-sunpy-map-sources sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">aia_map</span></a><span class="p">)</span>
+<a href="https://docs.sunpy.org/en/stable/api/sunpy.map.sources.AIAMap.html#sunpy.map.sources.AIAMap" title="sunpy.map.sources.AIAMap" class="sphx-glr-backref-module-sunpy-map-sources sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">m_registered</span></a> <span class="o">=</span> <span class="n">register</span><span class="p">(</span><a href="https://docs.sunpy.org/en/stable/api/sunpy.map.sources.AIAMap.html#sunpy.map.sources.AIAMap" title="sunpy.map.sources.AIAMap" class="sphx-glr-backref-module-sunpy-map-sources sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">m_updated_pointing</span></a><span class="p">)</span>
+<a href="https://docs.sunpy.org/en/stable/api/sunpy.map.sources.AIAMap.html#sunpy.map.sources.AIAMap" title="sunpy.map.sources.AIAMap" class="sphx-glr-backref-module-sunpy-map-sources sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">m_normalized</span></a> <span class="o">=</span> <a href="https://docs.sunpy.org/en/stable/code_ref/map.html#sunpy.map.map_factory.MapFactory" title="sunpy.map.map_factory.MapFactory" class="sphx-glr-backref-module-sunpy-map-map_factory sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sunpy</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">Map</span></a><span class="p">(</span>
+    <a href="https://docs.sunpy.org/en/stable/api/sunpy.map.sources.AIAMap.html#sunpy.map.sources.AIAMap.data" title="sunpy.map.sources.AIAMap.data" class="sphx-glr-backref-module-sunpy-map-sources sphx-glr-backref-type-py-attribute"><span class="n">m_registered</span><span class="o">.</span><span class="n">data</span></a><span class="o">/</span><a href="https://docs.sunpy.org/en/stable/api/sunpy.map.sources.AIAMap.html#sunpy.map.sources.AIAMap.exposure_time" title="sunpy.map.sources.AIAMap.exposure_time" class="sphx-glr-backref-module-sunpy-map-sources sphx-glr-backref-type-py-attribute"><span class="n">m_registered</span><span class="o">.</span><span class="n">exposure_time</span><span class="o">.</span><span class="n">to</span></a><span class="p">(</span><a href="https://docs.astropy.org/en/stable/api/astropy.units.IrreducibleUnit.html#astropy.units.IrreducibleUnit" title="astropy.units.IrreducibleUnit" class="sphx-glr-backref-module-astropy-units sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">u</span><span class="o">.</span><span class="n">s</span></a><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+    <a href="https://docs.sunpy.org/en/stable/api/sunpy.util.MetaDict.html#sunpy.util.MetaDict" title="sunpy.util.MetaDict" class="sphx-glr-backref-module-sunpy-util sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">m_registered</span><span class="o">.</span><span class="n">meta</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<p>Compute the point-spread function (PSF) and use it to deconvolve the image.
+Warning: the PSF computation can take over 16 minutes on a CPU. If you have
+an NVIDIA GPU and CuPy installed, then PSF will automatically use it.
+See the <a class="reference external" href="https://aiapy.readthedocs.io/en/latest/api/aiapy.psf.psf.html">PSF documentation</a> for details.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">psf</span></a> <span class="o">=</span> <span class="n">psf_</span><span class="o">.</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">psf</span></a><span class="p">(</span><a href="https://docs.sunpy.org/en/stable/api/sunpy.map.sources.AIAMap.html#sunpy.map.sources.AIAMap.wavelength" title="sunpy.map.sources.AIAMap.wavelength" class="sphx-glr-backref-module-sunpy-map-sources sphx-glr-backref-type-py-attribute"><span class="n">m_normalized</span><span class="o">.</span><span class="n">wavelength</span></a><span class="p">)</span>
+<a href="https://docs.sunpy.org/en/stable/api/sunpy.map.sources.AIAMap.html#sunpy.map.sources.AIAMap" title="sunpy.map.sources.AIAMap" class="sphx-glr-backref-module-sunpy-map-sources sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">map_deconvolved</span></a> <span class="o">=</span> <span class="n">psf_</span><span class="o">.</span><span class="n">deconvolve</span><span class="p">(</span><a href="https://docs.sunpy.org/en/stable/api/sunpy.map.sources.AIAMap.html#sunpy.map.sources.AIAMap" title="sunpy.map.sources.AIAMap" class="sphx-glr-backref-module-sunpy-map-sources sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">m_normalized</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">psf</span></a><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">psf</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<p>Save the deconvolved image as a FITS file without compression using SunPy.
+Note: this resulted in a 128 MB file while testing.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.sunpy.org/en/stable/api/sunpy.map.sources.AIAMap.html#sunpy.map.sources.AIAMap.save" title="sunpy.map.sources.AIAMap.save" class="sphx-glr-backref-module-sunpy-map-sources sphx-glr-backref-type-py-method"><span class="n">map_deconvolved</span><span class="o">.</span><span class="n">save</span></a><span class="p">(</span><span class="s1">&#39;aia_map_deconv.fits&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/3/library/os.path.html#os.path.getsize" title="os.path.getsize" class="sphx-glr-backref-module-os-path sphx-glr-backref-type-py-function"><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span></a><span class="p">(</span><span class="s1">&#39;aia_map_deconv.fits&#39;</span><span class="p">))</span>
+
+<span class="c1"># This time pass SunPy the `CompImagHDU &lt;https://docs.astropy.org/en/stable/io/fits/api/images.html#compimagehdu&gt;`_ compression routine from Astropy.</span>
+<span class="n">sunpy</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">fits</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;aia_map_deconv_comp.fits&#39;</span><span class="p">,</span> <a href="https://docs.sunpy.org/en/stable/api/sunpy.map.sources.AIAMap.html#sunpy.map.sources.AIAMap.data" title="sunpy.map.sources.AIAMap.data" class="sphx-glr-backref-module-sunpy-map-sources sphx-glr-backref-type-py-attribute"><span class="n">map_deconvolved</span><span class="o">.</span><span class="n">data</span></a><span class="p">,</span>
+                    <a href="https://docs.sunpy.org/en/stable/api/sunpy.map.sources.AIAMap.html#sunpy.map.sources.AIAMap.fits_header" title="sunpy.map.sources.AIAMap.fits_header" class="sphx-glr-backref-module-sunpy-map-sources sphx-glr-backref-type-py-attribute"><span class="n">map_deconvolved</span><span class="o">.</span><span class="n">fits_header</span></a><span class="p">,</span> <span class="n">hdu_type</span><span class="o">=</span><a href="https://docs.astropy.org/en/stable/io/fits/api/images.html#astropy.io.fits.CompImageHDU" title="astropy.io.fits.CompImageHDU" class="sphx-glr-backref-module-astropy-io-fits sphx-glr-backref-type-py-class"><span class="n">CompImageHDU</span></a><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/3/library/os.path.html#os.path.getsize" title="os.path.getsize" class="sphx-glr-backref-module-os-path sphx-glr-backref-type-py-function"><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span></a><span class="p">(</span><span class="s1">&#39;aia_map_deconv_comp.fits&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>134236800
+14181120
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 6 minutes  55.505 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-generated-gallery-retrieve-compress-py">
+<div class="binder-badge docutils container">
+<a class="reference external image-reference" href="https://mybinder.org/v2/gh/HeliophysicsPy/gallery/gh-pages?urlpath=lab/tree/notebooks/generated/gallery/retrieve_compress.ipynb"><img alt="Launch binder" src="../../_images/binder_badge_logo.svg" width="150px" /></a>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/7dba0b81187e9bd67b38d7456988ddec/retrieve_compress.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">retrieve_compress.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/b2b6d580250e0f52e0b73632c23d75aa/retrieve_compress.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">retrieve_compress.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">PyHC Tutorials</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Python in Heliophysics Community Gallery</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="planet_locations.html">Planet Positions in the Solar System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="units_demo.html">Quantities, Units, and Constants</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Downloading and Compressing a FITS file using SunPy, aiapy, and Astropy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyspedas_demo.html">pySPEDAS Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coordinates_demo.html">Astropy Coordinates and SunPy Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pytplot_demo.html">PyTplot Demo</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Python in Heliophysics Community Gallery</a><ul>
+      <li>Previous: <a href="units_demo.html" title="previous chapter">Quantities, Units, and Constants</a></li>
+      <li>Next: <a href="pyspedas_demo.html" title="next chapter">pySPEDAS Demo</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, PyHC.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/generated/gallery/retrieve_compress.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
