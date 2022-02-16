@@ -5,3 +5,5 @@ matplotlib==3.4.3
 pyqtgraph==0.12.2
 pytplot==1.7.28
 pyspedas==1.2.8
+aiapy==0.6.4
+bs4
