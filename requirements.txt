@@ -4,3 +4,4 @@ sunpy
 pytplot
 pyspedas
 aiapy
+spacepy
