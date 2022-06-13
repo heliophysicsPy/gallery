@@ -6,5 +6,5 @@ pyqtgraph==0.12.2
 pytplot==1.7.28
 pyspedas==1.2.8
 aiapy==0.6.4
-spacepy==0.3.0
+spacepy
 bs4
