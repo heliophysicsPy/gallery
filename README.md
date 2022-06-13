@@ -14,10 +14,10 @@ To contribute a new tutorial please provide a pull request. All tutorial files
 are stored in the `gallery\` directory and must be a python file. The gallery
 uses the [sphinx gallery](https://sphinx-gallery.readthedocs.io/en/latest/)
 plugin and all output including plots are generated automatically. You can see
-an example gallery [here](https://sphinx-gallery.readthedocs.io/en/latest/auto_examples/index.html).
+an example gallery [here](https://sphinx-gallery.github.io/stable/auto_examples/index.html).
 The [SunPy gallery](http://docs.sunpy.org/en/stable/generated/gallery/index.html) is also a good example.
 For the required syntax see the
-[sphinx gallery syntax](https://sphinx-gallery.readthedocs.io/en/latest/syntax.html)
+[sphinx gallery syntax](https://sphinx-gallery.github.io/stable/syntax.html)
 documentation. Since the syntax is fairly straightforward you may also just
 refer to an existing tutorial file.
 
