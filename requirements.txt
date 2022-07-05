@@ -5,3 +5,4 @@ pytplot
 pyspedas
 aiapy
 spacepy
+plasmapy
