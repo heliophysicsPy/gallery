@@ -1,3 +1,4 @@
 .tox/
 generated/
 _build/
+.idea
