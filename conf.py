@@ -21,7 +21,7 @@ import pathlib
 # -- Project information -----------------------------------------------------
 
 project = 'Python in Heliophysics Community (PyHC) Tutorials'
-copyright = '2018, PyHC'
+copyright = '2018–2022, PyHC'
 author = 'PyHC'
 
 # The short X.Y version
@@ -205,9 +205,9 @@ intersphinx_mapping = {
     'matplotlib': ('https://matplotlib.org/',
                    (None, 'http://data.astropy.org/intersphinx/matplotlib.inv')),
     'astropy': ('http://docs.astropy.org/en/stable/', None),
-    'sunpy': ('http://docs.sunpy.org/en/stable/', None)
+    'sunpy': ('http://docs.sunpy.org/en/stable/', None),
+    'plasmapy': ('https://docs.plasmapy.org/en/stable', None),
 }
-
 
 extensions += ["sphinx_gallery.gen_gallery"]
 path = pathlib.Path.cwd()
