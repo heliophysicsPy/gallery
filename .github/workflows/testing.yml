@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches:
+    - main
+    - stable
+    - v0.*.x
+    tags:
+    - v*
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  documentation:
+    name: Documentation
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.8
+    - name: Install Python dependencies
+      run: python -m pip install --progress-bar off --upgrade tox
+    - name: Install language-pack-fr and tzdata
+      run: sudo apt-get install graphviz pandoc
+    - name: Run tests
+      run: tox -e build_docs -- -q
