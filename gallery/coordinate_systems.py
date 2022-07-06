@@ -10,6 +10,8 @@ compute some simple transformations in each package.
 """
 
 ##############################################################################
+
+!pip install spacepy
 from spacepy.coordinates import Coords
 import spacepy.time as spt
 
