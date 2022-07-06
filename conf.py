@@ -21,14 +21,13 @@ import pathlib
 # -- Project information -----------------------------------------------------
 
 project = 'PyHC Tutorials'
-copyright = '2021, PyHC'
+copyright = '2018–2022, PyHC'
 author = 'PyHC'
 
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
 release = ''
-
 
 # -- General configuration ---------------------------------------------------
 
@@ -61,7 +60,7 @@ master_doc = 'index'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = "en"
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -70,7 +69,6 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '.tox']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = None
-
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -205,9 +203,9 @@ intersphinx_mapping = {
     'matplotlib': ('https://matplotlib.org/',
                    (None, 'http://data.astropy.org/intersphinx/matplotlib.inv')),
     'astropy': ('http://docs.astropy.org/en/stable/', None),
-    'sunpy': ('http://docs.sunpy.org/en/stable/', None)
+    'sunpy': ('http://docs.sunpy.org/en/stable/', None),
+    'plasmapy': ('https://docs.plasmapy.org/en/stable', None),
 }
-
 
 extensions += ["sphinx_gallery.gen_gallery"]
 path = pathlib.Path.cwd()

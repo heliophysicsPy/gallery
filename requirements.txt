@@ -8,3 +8,4 @@ pyspedas==1.2.8
 aiapy==0.6.4
 spacepy
 bs4
+plasmapy==0.8.1
