@@ -23,12 +23,12 @@ import pathlib
 project = 'PyHC Tutorials'
 copyright = '2018–2022, PyHC'
 author = 'PyHC'
+language = "en"
 
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
 release = ''
-
 
 # -- General configuration ---------------------------------------------------
 
@@ -70,7 +70,6 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '.tox']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = None
-
 
 # -- Options for HTML output -------------------------------------------------
 
