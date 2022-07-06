@@ -98,10 +98,10 @@ pytplot.tplot_options('data_gap', 80)
 # Displaying data using tplot
 # ---------------------------
 # Single Panel Plot
-pytplot.tplot('swia_vel')  # or, pytplot.tplot(6)
+# pytplot.tplot('swia_vel')  # or, pytplot.tplot(6)
 
 # Multiple Panel Plot
-pytplot.tplot(['swia_counts', 'swia_vel', 'mag'])  # or, pytplot.tplot([4,6,7])
+# pytplot.tplot(['swia_counts', 'swia_vel', 'mag'])  # or, pytplot.tplot([4,6,7])
 
 ##############################################################################
 # Interacting with Data Plots
@@ -123,22 +123,20 @@ pytplot.tplot(['swia_counts', 'swia_vel', 'mag'])  # or, pytplot.tplot([4,6,7])
 # Add crosshairs to plot window
 # The Crosshairs Tool displays a set of crosshairs that follow the location of the mouse on the plot.
 # Crosshairs can be modified to be not displayed...
-
 pytplot.tplot_options('crosshair', False)
-pytplot.tplot('swia_counts')
+# pytplot.tplot('swia_counts')
 
 # and crosshair names can be modified.
 pytplot.tplot_options('crosshair', True)  # Just re-adding the crosshairs
 pytplot.options('swia_counts', 'crosshair_x', 'XXX')
 pytplot.options('swia_counts', 'crosshair_y', 'YYY')
 pytplot.options('swia_counts', 'crosshair_z', 'ZZZ')
-pytplot.tplot('swia_counts')
+# pytplot.tplot('swia_counts')
 
 # Adding timebars
 # To place a vertical line at a specific time on all panels:
 # pytplot.timebar('2016-06-20 01:15:32', thick=3, color='green') will add a vertical black line to all plots
 # at the time entered. Further settings related to this routine are described in the pytplot documentation.
-
 pytplot.timebar('2016-06-20 01:15:32', thick=3, color='green')
 
 ##############################################################################
@@ -162,7 +160,7 @@ pytplot.options('swia_counts', 'ylog_interactive', True)  # Setting to False wou
 pytplot.options('swia_counts', 'static_tavg', ['2016-06-20 12:00:00', '2016-06-20 13:00:00'])
 pytplot.options('swia_counts', 'static', '2016-06-20 01:00:57')
 pytplot.options('swia_counts', 't_average', 1200)
-pytplot.tplot('swia_counts')
+# pytplot.tplot('swia_counts')
 
 ##############################################################################
 # Saving output
